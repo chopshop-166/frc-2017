@@ -9,7 +9,7 @@
   <packaging>jar</packaging>
 
   <name>frc-2017</name>
-  <url>http://maven.apache.org</url>
+  <url>http://github.com/chopshop-166/frc-2017</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,17 +19,17 @@
     <sourceDirectory>
       src/
     </sourceDirectory>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.3</version>
-          <configuration>
-            <source>8</source>
-			<target>8</target>
-          </configuration>
-        </plugin>
-      </plugins>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <repositories>
