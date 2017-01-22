@@ -7,9 +7,9 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class DriveStraight extends Command {
+public class DriveWithJoysticks extends Command {
 
-	public DriveStraight() {
+	public DriveWithJoysticks() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drive);
@@ -23,6 +23,8 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		Robot.oi.getLeftY();
+		Robot.oi.getRightY();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

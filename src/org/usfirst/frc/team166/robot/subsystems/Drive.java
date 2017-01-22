@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import org.usfirst.frc.team166.robot.Robot;
 import org.usfirst.frc.team166.robot.RobotMap;
 
 /**
@@ -31,6 +32,12 @@ public class Drive extends Subsystem {
 		encoderRight.setDistancePerPulse((Math.PI * 4) / 1024); // Diameter of wheels is 4"
 		encoderLeft.setDistancePerPulse((Math.PI * 4) / 1024);
 		return enc.getRate();
+	}
+
+	public boolean areJoysticksClose() {
+		double joyL = Robot.oi.getLeftY();
+		double joyR = Robot.oi.getRightY();
+		return ((Math.abs(joyL) - Math.abs(joyR)) < 0.1);
 	}
 
 	// public void setEncoderDistance() {
