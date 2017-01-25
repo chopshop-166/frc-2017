@@ -34,6 +34,11 @@ public class Drive extends Subsystem {
 		return enc.getRate();
 	}
 
+	public void resetEncoders() {
+		encoderRight.reset();
+		encoderLeft.reset();
+	}
+
 	public boolean areJoysticksClose() {
 		double joyL = Robot.oi.getLeftY();
 		double joyR = Robot.oi.getRightY();
