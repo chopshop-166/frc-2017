@@ -26,6 +26,7 @@ public class DriveWithJoysticks extends Command {
 	protected void execute() {
 		Robot.oi.getLeftY();
 		Robot.oi.getRightY();
+		Robot.drive.setMotorPower(Robot.oi.getRightY(), Robot.oi.getLeftY(), Robot.oi.getRightY(), Robot.oi.getLeftY());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -37,11 +38,13 @@ public class DriveWithJoysticks extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		Robot.drive.stopMotors();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		Robot.drive.stopMotors();
 	}
 }

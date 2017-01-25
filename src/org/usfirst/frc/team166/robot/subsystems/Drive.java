@@ -28,6 +28,13 @@ public class Drive extends Subsystem {
 		motorRearLeft.set(motorRearLeftPower);
 	}
 
+	public void stopMotors() {
+		motorFrontRight.set(0);
+		motorFrontLeft.set(0);
+		motorRearRight.set(0);
+		motorRearLeft.set(0);
+	}
+
 	public double getMotorSpeed(Encoder enc) {
 		encoderRight.setDistancePerPulse((Math.PI * 4) / 1024); // Diameter of wheels is 4"
 		encoderLeft.setDistancePerPulse((Math.PI * 4) / 1024);
