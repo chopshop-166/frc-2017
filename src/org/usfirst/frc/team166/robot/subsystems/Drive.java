@@ -35,6 +35,14 @@ public class Drive extends Subsystem {
 		motorRearLeft.set(0);
 	}
 
+	public void driveJoysticks(double leftJoyVal, double rightJoyVal) {
+		if (leftJoyVal < 0.1 && rightJoyVal <= 0.1) {
+			Robot.drive.stopMotors();
+		} else {
+			Robot.drive.setMotorPower(leftJoyVal, rightJoyVal, leftJoyVal, rightJoyVal);
+		}
+	}
+
 	public double getMotorSpeed(Encoder enc) {
 		encoderRight.setDistancePerPulse((Math.PI * 4) / 1024); // Diameter of wheels is 4"
 		encoderLeft.setDistancePerPulse((Math.PI * 4) / 1024);
@@ -46,7 +54,7 @@ public class Drive extends Subsystem {
 		encoderLeft.reset();
 	}
 
-	public boolean areJoysticksClose() {
+	public boolean areJoysticksInDeadzone() {
 		double joyL = Robot.oi.getLeftY();
 		double joyR = Robot.oi.getRightY();
 		return ((Math.abs(joyL) - Math.abs(joyR)) < 0.1);
