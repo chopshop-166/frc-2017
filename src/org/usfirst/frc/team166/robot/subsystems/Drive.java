@@ -36,7 +36,7 @@ public class Drive extends Subsystem {
 	}
 
 	public void driveJoysticks(double leftJoyVal, double rightJoyVal) {
-		if (leftJoyVal < 0.1 && rightJoyVal <= 0.1) {
+		if (areJoysticksInDeadzone()) {
 			Robot.drive.stopMotors();
 		} else {
 			Robot.drive.setMotorPower(leftJoyVal, rightJoyVal, leftJoyVal, rightJoyVal);
