@@ -16,6 +16,7 @@ public class RobotMap {
 	public static int rearLeftMotor = 3;
 
 	// Analog Sensors
+	public static int gyroPort = 0;
 
 	// Digital Sensors
 
