@@ -23,6 +23,8 @@ public class Drive extends Subsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
+	public double wheelDiameter = 10.0; // inches
+
 	public void setMotorPower(double motorFrontRightPower, double motorFrontLeftPower, double motorRearRightPower,
 			double motorRearLeftPower) {
 		motorFrontRight.set(motorFrontRightPower);
@@ -52,9 +54,9 @@ public class Drive extends Subsystem {
 
 	public void driveJoysticks(double leftJoyVal, double rightJoyVal) {
 		if (areJoysticksInDeadzone()) {
-			Robot.drive.stopMotors();
+			stopMotors();
 		} else {
-			Robot.drive.setMotorPower(leftJoyVal, rightJoyVal, leftJoyVal, rightJoyVal);
+			setMotorPower(leftJoyVal, rightJoyVal, leftJoyVal, rightJoyVal);
 		}
 	}
 
@@ -63,12 +65,11 @@ public class Drive extends Subsystem {
 		// return motorPower * (angularVelocity / 10);
 		double angleError = gyro.getAngle();
 		return angleError / 45.0;
-
 	}
 
 	public double getMotorSpeed(Encoder enc) {
-		encoderRight.setDistancePerPulse((Math.PI * 4) / 1024); // Diameter of wheels is 4"
-		encoderLeft.setDistancePerPulse((Math.PI * 4) / 1024);
+		encoderRight.setDistancePerPulse((Math.PI * wheelDiameter) / 1024);
+		encoderLeft.setDistancePerPulse((Math.PI * wheelDiameter) / 1024);
 		return enc.getRate();
 	}
 
