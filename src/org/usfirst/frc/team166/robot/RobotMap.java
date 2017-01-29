@@ -10,10 +10,10 @@ public class RobotMap {
 	// Solenoids
 
 	// Motor Controllers
-	public static int frontRightMotor = 0;
-	public static int frontLeftMotor = 1;
+	public static int frontRightMotor = 1;
+	public static int frontLeftMotor = 3;
 	public static int rearRightMotor = 2;
-	public static int rearLeftMotor = 3;
+	public static int rearLeftMotor = 4;
 
 	// Analog Sensors
 	public static int gyroPort = 0;

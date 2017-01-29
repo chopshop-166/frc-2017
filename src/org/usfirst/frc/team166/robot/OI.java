@@ -1,6 +1,9 @@
 package org.usfirst.frc.team166.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+import org.usfirst.frc.team166.robot.commands.DriveDistance;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
@@ -11,9 +14,17 @@ public class OI {
 	private final Joystick stickLeft;
 	private final Joystick stickRight;
 
+	private final Joystick testStick;
+
 	public OI() {
 		stickLeft = new Joystick(RobotMap.stickLeft);
 		stickRight = new Joystick(RobotMap.stickRight);
+
+		testStick = new Joystick(0);
+
+		JoystickButton buttonA = new JoystickButton(testStick, 2);
+
+		buttonA.whenPressed(new DriveDistance(31.4, 0.5));
 	}
 
 	public double getLeftY() {
