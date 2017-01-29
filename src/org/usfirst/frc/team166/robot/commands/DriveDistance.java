@@ -7,10 +7,14 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class DriveTwoFeetStraight extends Command {
+public class DriveDistance extends Command {
+	double distance; // inches
+	double speed; // motor power (for now)
 
-	public DriveTwoFeetStraight() {
+	public DriveDistance(double desiredDistance, double desiredSpeed) {
 		requires(Robot.drive);
+		distance = desiredDistance;
+		speed = desiredSpeed;
 	}
 
 	// Called just before this Command runs the first time
@@ -22,13 +26,13 @@ public class DriveTwoFeetStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.driveStraight(0.8);
+		Robot.drive.driveStraight(speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.hasDrivenDistance(24);
+		return Robot.drive.hasDrivenDistance(distance);
 	}
 
 	// Called once after isFinished returns true
