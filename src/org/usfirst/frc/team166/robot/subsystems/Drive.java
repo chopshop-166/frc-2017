@@ -34,8 +34,8 @@ public class Drive extends Subsystem {
 	}
 
 	public void driveStraight(double motorPower) {
-		double compensatedPowerRight = motorPower + motorCompAngle(motorPower);
-		double compensatedPowerLeft = motorPower - motorCompAngle(motorPower);
+		double compensatedPowerRight = motorPower + motorCompDriveStraight(motorPower);
+		double compensatedPowerLeft = motorPower - motorCompDriveStraight(motorPower);
 
 		setMotorPower(compensatedPowerRight, compensatedPowerLeft, compensatedPowerRight, compensatedPowerLeft);
 	}
@@ -60,11 +60,36 @@ public class Drive extends Subsystem {
 		}
 	}
 
-	public double motorCompAngle(double motorPower) {
+	public double motorCompDriveStraight(double motorPower) {
 		// double angularVelocity = gyro.getRate();
 		// return motorPower * (angularVelocity / 10);
-		double angleError = gyro.getAngle();
-		return angleError / 45.0;
+		return (angleError() / 10.0) * motorPower;
+	}
+
+	public void turnAngle() {
+		if (angleError() >= 20.0) {
+			setMotorPower(1, -1, 1, -1);
+		} else if (angleError() <= -20.0) {
+			setMotorPower(-1, 1, -1, 1);
+
+		} else if ((angleError() <= 20.0 && angleError() >= 5.0) || (angleError() >= -20.0 && angleError() <= -5.0)) {
+			setMotorPower(angleError() / 20.0, -angleError() / 20.0, angleError() / 20.0, -angleError() / 20.0);
+
+		} else if ((angleError() < 5.0 && angleError() >= 0.1) || (angleError() > -5.0 && angleError() <= -0.1)) {
+			setMotorPower(0.25, -0.25, 0.25, -0.25);
+
+		} else if (angleError() < 0.1 && angleError() > -0.1) {
+			stopMotors();
+		}
+	}
+
+	public double angleError() {
+		double getAngle = gyro.getAngle();
+
+		if (getAngle <= 180)
+			return gyro.getAngle();
+		else
+			return gyro.getAngle() - 360;
 	}
 
 	public double getMotorSpeed(Encoder enc) {
