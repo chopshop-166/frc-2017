@@ -14,9 +14,9 @@ import org.usfirst.frc.team166.robot.RobotMap;
 public class Drive extends Subsystem {
 
 	Victor motorFrontRight = new Victor(RobotMap.frontRightMotor);
-	Victor motorFrontLeft = new Victor(RobotMap.frontRightMotor);
-	Victor motorRearRight = new Victor(RobotMap.frontRightMotor);
-	Victor motorRearLeft = new Victor(RobotMap.frontRightMotor);
+	Victor motorFrontLeft = new Victor(RobotMap.frontLeftMotor);
+	Victor motorRearRight = new Victor(RobotMap.rearRightMotor);
+	Victor motorRearLeft = new Victor(RobotMap.rearLeftMotor);
 
 	Encoder encoderRight = new Encoder(RobotMap.rightEncoderA, RobotMap.rightEncoderB);
 	Encoder encoderLeft = new Encoder(RobotMap.leftEncoderA, RobotMap.leftEncoderB);
