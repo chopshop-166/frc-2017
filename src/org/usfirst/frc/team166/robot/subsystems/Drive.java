@@ -23,7 +23,8 @@ public class Drive extends Subsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
-	public double wheelDiameter = 10.0; // inches
+	public double wheelDiameter = 4.0; // inches
+	public double angleError;
 
 	public void setMotorPower(double motorFrontRightPower, double motorFrontLeftPower, double motorRearRightPower,
 			double motorRearLeftPower) {
@@ -63,24 +64,61 @@ public class Drive extends Subsystem {
 	public double motorCompDriveStraight(double motorPower) {
 		// double angularVelocity = gyro.getRate();
 		// return motorPower * (angularVelocity / 10);
-		return (angleError() / 10.0) * motorPower;
+		return (angleErrorDriveStraight() / 10.0) * motorPower;
 	}
 
-	public void turnAngle() {
-		if (angleError() >= 20.0) {
+	public void turnAngle(double desiredAngle) {
+
+		angleError = desiredAngle - gyro.getAngle();
+
+		if (angleError <= 180.0 || angleError <= -180.0)
+			turnAngleCW();
+		else
+			turnAngleCCW();
+
+	}
+
+	public void turnAngleCCW() {
+		angleError = Math.abs(angleError);
+
+		if (angleError >= 20.0) {
 			setMotorPower(1, -1, 1, -1);
-		} else if (angleError() <= -20.0) {
-			setMotorPower(-1, 1, -1, 1);
 
-		} else if ((angleError() <= 20.0 && angleError() >= 5.0) || (angleError() >= -20.0 && angleError() <= -5.0)) {
-			setMotorPower(angleError() / 20.0, -angleError() / 20.0, angleError() / 20.0, -angleError() / 20.0);
+		} else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
+			setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
 
-		} else if ((angleError() < 5.0 && angleError() >= 0.1) || (angleError() > -5.0 && angleError() <= -0.1)) {
+		} else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
 			setMotorPower(0.25, -0.25, 0.25, -0.25);
 
-		} else if (angleError() < 0.1 && angleError() > -0.1) {
+		} else if (angleError < 0.1 && angleError > -0.1) {
 			stopMotors();
 		}
+	}
+
+	public void turnAngleCW() {
+		angleError = -Math.abs(angleError);
+
+		if (angleError >= 20.0) {
+			setMotorPower(1, -1, 1, -1);
+
+		} else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
+			setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
+
+		} else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
+			setMotorPower(0.25, -0.25, 0.25, -0.25);
+
+		} else if (angleError < 0.1 && angleError > -0.1) {
+			stopMotors();
+		}
+	}
+
+	public double angleErrorDriveStraight() {
+		double getAngle = gyro.getAngle();
+
+		if (getAngle <= 180)
+			return gyro.getAngle();
+		else
+			return gyro.getAngle() - 360;
 	}
 
 	public double angleError() {
@@ -89,7 +127,7 @@ public class Drive extends Subsystem {
 		if (getAngle <= 180)
 			return gyro.getAngle();
 		else
-			return gyro.getAngle() - 360;
+			return 360 - gyro.getAngle();
 	}
 
 	public double getMotorSpeed(Encoder enc) {
