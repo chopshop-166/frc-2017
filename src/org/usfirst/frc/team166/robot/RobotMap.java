@@ -21,10 +21,10 @@ public class RobotMap {
 	// Digital Sensors
 
 	// Encoders
-	public static int rightEncoderA = 0;
-	public static int rightEncoderB = 0;
-	public static int leftEncoderA = 0;
-	public static int leftEncoderB = 0;
+	public static int rightEncoderA = 1;
+	public static int rightEncoderB = 2;
+	public static int leftEncoderA = 3;
+	public static int leftEncoderB = 4;
 
 	// Joysticks
 	public static int stickLeft = 0;
