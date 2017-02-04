@@ -4,9 +4,11 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.Robot;
 import org.usfirst.frc.team166.robot.RobotMap;
+import org.usfirst.frc.team166.robot.commands.TurnAngle;
 
 /**
  *
@@ -28,10 +30,11 @@ public class Drive extends Subsystem {
 
 	public void setMotorPower(double motorFrontRightPower, double motorFrontLeftPower, double motorRearRightPower,
 			double motorRearLeftPower) {
-		motorFrontRight.set(motorFrontRightPower);
-		motorFrontLeft.set(motorFrontLeftPower);
-		motorRearRight.set(motorRearRightPower);
-		motorRearLeft.set(motorRearLeftPower);
+		// motorFrontRight.set(motorFrontRightPower);
+		// motorFrontLeft.set(motorFrontLeftPower);
+		// motorRearRight.set(motorRearRightPower);
+		// motorRearLeft.set(motorRearLeftPower);
+		SmartDashboard.putNumber("Motor Power: ", motorFrontRightPower);
 	}
 
 	public void driveStraight(double motorPower) {
@@ -53,12 +56,13 @@ public class Drive extends Subsystem {
 		setMotorPower(0, 0, 0, 0);
 	}
 
-	public void driveJoysticks(double leftJoyVal, double rightJoyVal) {
-		if (areJoysticksInDeadzone()) {
-			stopMotors();
-		} else {
-			setMotorPower(leftJoyVal, rightJoyVal, leftJoyVal, rightJoyVal);
-		}
+	public void driveJoysticks(double rightJoyVal, double leftJoyVal) {
+		// if (areJoysticksInDeadzone()) {
+		// stopMotors();
+		// } else {
+		setMotorPower(Math.pow(rightJoyVal, 3), Math.pow(leftJoyVal, 3), Math.pow(rightJoyVal, 3),
+				Math.pow(leftJoyVal, 3));
+		// }
 	}
 
 	public double motorCompDriveStraight(double motorPower) {
@@ -70,6 +74,9 @@ public class Drive extends Subsystem {
 	public void turnAngle(double desiredAngle) {
 
 		angleError = desiredAngle - gyro.getAngle();
+		SmartDashboard.putNumber("Angle: ", gyro.getAngle());
+		SmartDashboard.putNumber("Desired Angle: ", desiredAngle);
+		SmartDashboard.putNumber("Angle error: ", angleError);
 
 		if (angleError <= 180.0 || angleError <= -180.0)
 			turnAngleCW();
@@ -157,5 +164,8 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
+		setDefaultCommand(new TurnAngle(0));
+
+		gyro.calibrate();
 	}
 }
