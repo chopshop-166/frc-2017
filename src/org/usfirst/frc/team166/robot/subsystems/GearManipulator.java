@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class GearManipulator extends Subsystem {
 
-	DoubleSolenoid exampleDouble = new DoubleSolenoid(1, 2);
+	DoubleSolenoid manipulatorSolenoid = new DoubleSolenoid(1, 2);
 
 	@Override
 	public void initDefaultCommand() {
@@ -16,10 +16,10 @@ public class GearManipulator extends Subsystem {
 	}
 
 	public void open() {
-		exampleDouble.set(DoubleSolenoid.Value.kForward);
+		manipulatorSolenoid.set(DoubleSolenoid.Value.kForward);
 	}
 
 	public void close() {
-		exampleDouble.set(DoubleSolenoid.Value.kReverse);
+		manipulatorSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
 }
