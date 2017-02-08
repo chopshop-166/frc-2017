@@ -1,7 +1,9 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import org.usfirst.frc.team166.robot.RobotMap;
 
 /**
  *
@@ -12,7 +14,8 @@ public class Intake extends Subsystem {
 	// Off has those engines disabled
 	//
 	//
-	SpeedController x;
+
+	Spark augerController = new Spark(RobotMap.augerMotor);
 
 	@Override
 	public void initDefaultCommand() {
@@ -20,10 +23,10 @@ public class Intake extends Subsystem {
 	}
 
 	public void on() {
-		x.set(.5);
+		augerController.set(.5);
 	}
 
 	public void off() {
-		x.stopMotor();
+		augerController.stopMotor();
 	}
 }
