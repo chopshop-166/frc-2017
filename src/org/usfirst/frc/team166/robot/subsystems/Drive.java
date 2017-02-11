@@ -119,7 +119,10 @@ public class Drive extends Subsystem {
 	}
 
 	public double motorCompAngle(double angleError) {
-		return 1.65321 * Math.log10(angleError);
+		if ((angleError + 2) >= 45)
+			return 1.0;
+		else
+			return (1 / 1.65321) * Math.log10(angleError + 2);
 	}
 
 	public double getMotorSpeed(Encoder enc) {
