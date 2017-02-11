@@ -22,6 +22,30 @@ public class OI {
 
 		xbox = new Joystick(0);
 
+		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
+		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
+		JoystickButton button3Left = new JoystickButton(stickLeft, 3);
+		JoystickButton button4Left = new JoystickButton(stickLeft, 4);
+		JoystickButton button5Left = new JoystickButton(stickLeft, 5);
+		JoystickButton button6Left = new JoystickButton(stickLeft, 6);
+		JoystickButton button7Left = new JoystickButton(stickLeft, 7);
+		JoystickButton button8Left = new JoystickButton(stickLeft, 8);
+		JoystickButton button9Left = new JoystickButton(stickLeft, 9);
+		JoystickButton button10Left = new JoystickButton(stickLeft, 10);
+		JoystickButton button11Left = new JoystickButton(stickLeft, 11);
+
+		JoystickButton leftJoyTrigger = new JoystickButton(stickRight, 1);
+		JoystickButton button2Right = new JoystickButton(stickRight, 2);
+		JoystickButton button3Right = new JoystickButton(stickRight, 3);
+		JoystickButton button4Right = new JoystickButton(stickRight, 4);
+		JoystickButton button5Right = new JoystickButton(stickRight, 5);
+		JoystickButton button6Right = new JoystickButton(stickRight, 6);
+		JoystickButton button7Right = new JoystickButton(stickRight, 7);
+		JoystickButton button8Right = new JoystickButton(stickRight, 8);
+		JoystickButton button9Right = new JoystickButton(stickRight, 9);
+		JoystickButton button10Right = new JoystickButton(stickRight, 10);
+		JoystickButton button11Right = new JoystickButton(stickRight, 11);
+
 		JoystickButton buttonA = new JoystickButton(xbox, 1);
 		JoystickButton buttonB = new JoystickButton(xbox, 2);
 		JoystickButton buttonX = new JoystickButton(xbox, 3);
