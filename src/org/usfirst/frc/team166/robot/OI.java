@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
-import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
-import org.usfirst.frc.team166.robot.commands.DriveWithJoysticksReversed;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
@@ -66,14 +64,6 @@ public class OI {
 		JoystickButton rightJoyXboxButton = new JoystickButton(xbox, 10);
 
 		buttonA.whenPressed(new DriveDistance(31.4, 0.5));
-
-		if (!isReversed) {
-			rightJoyTrigger.whenPressed(new DriveWithJoysticksReversed());
-			isReversed = true;
-		} else {
-			rightJoyTrigger.whenPressed(new DriveWithJoysticks());
-			isReversed = false;
-		}
 	}
 
 	public double getLeftY() {
