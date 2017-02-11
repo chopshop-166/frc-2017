@@ -30,10 +30,11 @@ public class Drive extends Subsystem {
 
 	public void setMotorPower(double motorFrontRightPower, double motorFrontLeftPower, double motorRearRightPower,
 			double motorRearLeftPower) {
-		// motorFrontRight.set(motorFrontRightPower);
-		// motorFrontLeft.set(motorFrontLeftPower);
-		// motorRearRight.set(motorRearRightPower);
-		// motorRearLeft.set(motorRearLeftPower);
+
+		motorFrontRight.set(motorFrontRightPower);
+		motorFrontLeft.set(motorFrontLeftPower);
+		motorRearRight.set(motorRearRightPower);
+		motorRearLeft.set(motorRearLeftPower);
 		SmartDashboard.putNumber("Motor Power: ", motorFrontRightPower);
 	}
 
@@ -87,19 +88,7 @@ public class Drive extends Subsystem {
 
 	public void turnAngleCCW() {
 		angleError = Math.abs(angleError);
-		//
-		// if (angleError >= 20.0) {
-		// setMotorPower(1, -1, 1, -1);
-		//
-		// } else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
-		// setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
-		//
-		// } else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
-		// setMotorPower(0.25, -0.25, 0.25, -0.25);
-		//
-		// } else if (angleError < 0.1 && angleError > -0.1) {
-		// stopMotors();
-		// }
+
 		setMotorPower(motorCompAngle(angleError), -motorCompAngle(angleError), motorCompAngle(angleError),
 				-motorCompAngle(angleError));
 	}
@@ -107,18 +96,6 @@ public class Drive extends Subsystem {
 	public void turnAngleCW() {
 		angleError = Math.abs(angleError);
 
-		// if (angleError >= 20.0) {
-		// setMotorPower(1, -1, 1, -1);
-		//
-		// } else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
-		// setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
-		//
-		// } else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
-		// setMotorPower(0.25, -0.25, 0.25, -0.25);
-		//
-		// } else if (angleError < 0.1 && angleError > -0.1) {
-		// stopMotors();
-		// }
 		setMotorPower(-motorCompAngle(angleError), motorCompAngle(angleError), -motorCompAngle(angleError),
 				motorCompAngle(angleError));
 	}
@@ -165,10 +142,6 @@ public class Drive extends Subsystem {
 		double joyR = Robot.oi.getRightY();
 		return ((Math.abs(joyL) - Math.abs(joyR)) < 0.1);
 	}
-
-	// public void setEncoderDistance() {
-	//
-	// }
 
 	@Override
 	public void initDefaultCommand() {
