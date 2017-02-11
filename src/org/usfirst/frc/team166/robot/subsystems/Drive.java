@@ -105,7 +105,7 @@ public class Drive extends Subsystem {
 	}
 
 	public void turnAngleCW() {
-		angleError = -Math.abs(angleError);
+		angleError = Math.abs(angleError);
 
 		// if (angleError >= 20.0) {
 		// setMotorPower(1, -1, 1, -1);
