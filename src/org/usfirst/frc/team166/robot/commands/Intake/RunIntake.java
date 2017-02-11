@@ -25,15 +25,15 @@ public class RunIntake extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		Robot.intake.off();
 	}
 
 	@Override
 	protected void interrupted() {
+		Robot.intake.off();
 	}
 }
