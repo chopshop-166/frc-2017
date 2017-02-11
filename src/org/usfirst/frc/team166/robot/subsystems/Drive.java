@@ -87,36 +87,40 @@ public class Drive extends Subsystem {
 
 	public void turnAngleCCW() {
 		angleError = Math.abs(angleError);
-
-		if (angleError >= 20.0) {
-			setMotorPower(1, -1, 1, -1);
-
-		} else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
-			setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
-
-		} else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
-			setMotorPower(0.25, -0.25, 0.25, -0.25);
-
-		} else if (angleError < 0.1 && angleError > -0.1) {
-			stopMotors();
-		}
+		//
+		// if (angleError >= 20.0) {
+		// setMotorPower(1, -1, 1, -1);
+		//
+		// } else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
+		// setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
+		//
+		// } else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
+		// setMotorPower(0.25, -0.25, 0.25, -0.25);
+		//
+		// } else if (angleError < 0.1 && angleError > -0.1) {
+		// stopMotors();
+		// }
+		setMotorPower(motorCompAngle(angleError), -motorCompAngle(angleError), motorCompAngle(angleError),
+				-motorCompAngle(angleError));
 	}
 
 	public void turnAngleCW() {
 		angleError = -Math.abs(angleError);
 
-		if (angleError >= 20.0) {
-			setMotorPower(1, -1, 1, -1);
-
-		} else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
-			setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
-
-		} else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
-			setMotorPower(0.25, -0.25, 0.25, -0.25);
-
-		} else if (angleError < 0.1 && angleError > -0.1) {
-			stopMotors();
-		}
+		// if (angleError >= 20.0) {
+		// setMotorPower(1, -1, 1, -1);
+		//
+		// } else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
+		// setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
+		//
+		// } else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
+		// setMotorPower(0.25, -0.25, 0.25, -0.25);
+		//
+		// } else if (angleError < 0.1 && angleError > -0.1) {
+		// stopMotors();
+		// }
+		setMotorPower(-motorCompAngle(angleError), motorCompAngle(angleError), -motorCompAngle(angleError),
+				motorCompAngle(angleError));
 	}
 
 	public double angleErrorDriveStraight() {
@@ -135,6 +139,10 @@ public class Drive extends Subsystem {
 			return gyro.getAngle();
 		else
 			return 360 - gyro.getAngle();
+	}
+
+	public double motorCompAngle(double angleError) {
+		return 1.65321 * Math.log10(angleError);
 	}
 
 	public double getMotorSpeed(Encoder enc) {
