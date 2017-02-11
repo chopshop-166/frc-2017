@@ -14,15 +14,27 @@ public class OI {
 	private final Joystick stickLeft;
 	private final Joystick stickRight;
 
-	private final Joystick testStick;
+	private final Joystick xbox;
 
 	public OI() {
 		stickLeft = new Joystick(RobotMap.stickLeft);
 		stickRight = new Joystick(RobotMap.stickRight);
 
-		testStick = new Joystick(0);
+		xbox = new Joystick(0);
 
-		JoystickButton buttonA = new JoystickButton(testStick, 2);
+		JoystickButton buttonA = new JoystickButton(xbox, 1);
+		JoystickButton buttonB = new JoystickButton(xbox, 2);
+		JoystickButton buttonX = new JoystickButton(xbox, 3);
+		JoystickButton buttonY = new JoystickButton(xbox, 4);
+
+		JoystickButton leftButton = new JoystickButton(xbox, 5);
+		JoystickButton rightButton = new JoystickButton(xbox, 6);
+
+		JoystickButton back = new JoystickButton(xbox, 7);
+		JoystickButton start = new JoystickButton(xbox, 8);
+
+		JoystickButton leftJoyXboxButton = new JoystickButton(xbox, 9);
+		JoystickButton rightJoyXboxButton = new JoystickButton(xbox, 10);
 
 		buttonA.whenPressed(new DriveDistance(31.4, 0.5));
 	}
