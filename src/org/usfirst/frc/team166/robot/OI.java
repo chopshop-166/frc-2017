@@ -13,7 +13,7 @@ import org.usfirst.frc.team166.robot.commands.DriveWithJoysticksReversed;
  */
 public class OI {
 
-	private final boolean isReversed;
+	private boolean isReversed;
 
 	private final Joystick stickLeft;
 	private final Joystick stickRight;
@@ -25,7 +25,7 @@ public class OI {
 		stickLeft = new Joystick(RobotMap.stickLeft);
 		stickRight = new Joystick(RobotMap.stickRight);
 
-		xbox = new Joystick(0);
+		xbox = new Joystick(RobotMap.xboxPort);
 
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
 		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
@@ -67,10 +67,13 @@ public class OI {
 
 		buttonA.whenPressed(new DriveDistance(31.4, 0.5));
 
-		if (!isReversed)
+		if (!isReversed) {
 			rightJoyTrigger.whenPressed(new DriveWithJoysticksReversed());
-		else
+			isReversed = true;
+		} else {
 			rightJoyTrigger.whenPressed(new DriveWithJoysticks());
+			isReversed = false;
+		}
 	}
 
 	public double getLeftY() {

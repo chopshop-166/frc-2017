@@ -29,6 +29,7 @@ public class RobotMap {
 	// Joysticks
 	public static int stickLeft = 0;
 	public static int stickRight = 1;
+	public static int xboxPort = 2;
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
