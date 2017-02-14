@@ -15,7 +15,7 @@ public class Storage extends Subsystem {
 	}
 
 	public void agitatorOn() {
-		exampleVictor.set(1.0);
+		exampleVictor.set(0.8);
 	}
 
 	public void agitatorOff() {
