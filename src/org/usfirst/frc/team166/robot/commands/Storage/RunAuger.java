@@ -18,12 +18,13 @@ public class RunAuger extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		Robot.storage.agitatorOn();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.storage.agitatorOn();
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
