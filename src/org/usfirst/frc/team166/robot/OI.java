@@ -1,14 +1,47 @@
 package org.usfirst.frc.team166.robot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team166.robot.commands.ExampleCommand;
+import org.usfirst.frc.team166.robot.commands.DriveDistance;
 
 /**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
+ * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
+ * that allow control of the robot.
  */
 public class OI {
+
+	private final Joystick stickLeft;
+	private final Joystick stickRight;
+
+	private final Joystick testStick;
+
+	public OI() {
+		stickLeft = new Joystick(RobotMap.stickLeft);
+		stickRight = new Joystick(RobotMap.stickRight);
+
+		testStick = new Joystick(0);
+
+		JoystickButton buttonA = new JoystickButton(testStick, 2);
+
+		buttonA.whenPressed(new DriveDistance(31.4, 0.5));
+	}
+
+	public double getLeftY() {
+		return stickLeft.getY();
+	}
+
+	// public double getLeftX() {
+	// return stickLeft.getX();
+	// }
+
+	public double getRightY() {
+		return stickRight.getY();
+	}
+
+	// public double getRightX() {
+	// return stickRight.getX();
+	// }
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
