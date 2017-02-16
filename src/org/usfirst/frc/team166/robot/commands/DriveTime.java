@@ -38,7 +38,7 @@ public class DriveTime extends Command {
 	@Override
 	protected boolean isFinished() {
 		// return Robot.drive.hasDrivenDistance(time);
-		return (timer.get() == time);
+		return (timer.get() >= time);
 	}
 
 	// Called once after isFinished returns true
