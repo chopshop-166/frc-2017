@@ -1,8 +1,9 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,10 +16,10 @@ import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
  */
 public class Drive extends Subsystem {
 
-	Victor motorFrontRight = new Victor(RobotMap.frontRightMotor);
-	Victor motorFrontLeft = new Victor(RobotMap.frontLeftMotor);
-	Victor motorRearRight = new Victor(RobotMap.rearRightMotor);
-	Victor motorRearLeft = new Victor(RobotMap.rearLeftMotor);
+	CANTalon motorFrontRight = new CANTalon(RobotMap.frontRightMotor);
+	CANTalon motorFrontLeft = new CANTalon(RobotMap.frontLeftMotor);
+	CANTalon motorRearRight = new CANTalon(RobotMap.rearRightMotor);
+	CANTalon motorRearLeft = new CANTalon(RobotMap.rearLeftMotor);
 
 	Encoder encoderRight = new Encoder(RobotMap.rightEncoderA, RobotMap.rightEncoderB);
 	Encoder encoderLeft = new Encoder(RobotMap.leftEncoderA, RobotMap.leftEncoderB);
@@ -32,9 +33,9 @@ public class Drive extends Subsystem {
 			double motorRearLeftPower) {
 
 		motorFrontRight.set(motorFrontRightPower);
-		motorFrontLeft.set(motorFrontLeftPower);
+		motorFrontLeft.set(-motorFrontLeftPower);
 		motorRearRight.set(motorRearRightPower);
-		motorRearLeft.set(motorRearLeftPower);
+		motorRearLeft.set(-motorRearLeftPower);
 		SmartDashboard.putNumber("Motor Power: ", motorFrontRightPower);
 	}
 
