@@ -37,6 +37,10 @@
       <id>wpilib</id>
       <url>http://first.wpi.edu/FRC/roborio/maven/release</url>
     </repository>
+    <repository>
+      <id>thirdparty</id>
+      <url>http://dev.imjac.in/maven/</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -44,6 +48,11 @@
       <groupId>edu.wpi.first.wpilibj</groupId>
       <artifactId>athena</artifactId>
       <version>2017.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>thirdparty.frc.ctre</groupId>
+      <artifactId>Toolsuite-Java</artifactId>
+      <version>4.4.1.9</version>
     </dependency>
   </dependencies>
 </project>
