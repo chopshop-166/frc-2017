@@ -1,5 +1,6 @@
-package org.usfirst.frc.team166.robot.commands.GearManipulator;
+package org.usfirst.frc.team166.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team166.robot.Robot;
@@ -7,41 +8,50 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class OpenManipulator extends Command {
+public class DriveTime extends Command {
+	double time; // seconds
+	double speed; // motor power (for now)
+	Timer timer;
 
-	public OpenManipulator() {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
-		requires(Robot.gearManipulator);
+	public DriveTime(double desiredTime, double desiredSpeed) {
+		requires(Robot.drive);
+		time = desiredTime;
+		speed = desiredSpeed;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.gearManipulator.open();
+		Robot.drive.resetGyro();
+		timer = new Timer();
+		timer.reset();
+		timer.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
+		Robot.drive.driveStraight(speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return true;
+		// return Robot.drive.hasDrivenDistance(time);
+		return (timer.get() >= time);
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		Robot.drive.stopMotors();
+		timer.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-
+		Robot.drive.stopMotors();
 	}
 }

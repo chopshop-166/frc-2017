@@ -1,24 +1,25 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.Robot;
 import org.usfirst.frc.team166.robot.RobotMap;
-import org.usfirst.frc.team166.robot.commands.TurnAngle;
+import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
 
 /**
  *
  */
 public class Drive extends Subsystem {
 
-	Victor motorFrontRight = new Victor(RobotMap.frontRightMotor);
-	Victor motorFrontLeft = new Victor(RobotMap.frontLeftMotor);
-	Victor motorRearRight = new Victor(RobotMap.rearRightMotor);
-	Victor motorRearLeft = new Victor(RobotMap.rearLeftMotor);
+	CANTalon motorFrontRight = new CANTalon(RobotMap.frontRightMotor);
+	CANTalon motorFrontLeft = new CANTalon(RobotMap.frontLeftMotor);
+	CANTalon motorRearRight = new CANTalon(RobotMap.rearRightMotor);
+	CANTalon motorRearLeft = new CANTalon(RobotMap.rearLeftMotor);
 
 	Encoder encoderRight = new Encoder(RobotMap.rightEncoderA, RobotMap.rightEncoderB);
 	Encoder encoderLeft = new Encoder(RobotMap.leftEncoderA, RobotMap.leftEncoderB);
@@ -30,10 +31,11 @@ public class Drive extends Subsystem {
 
 	public void setMotorPower(double motorFrontRightPower, double motorFrontLeftPower, double motorRearRightPower,
 			double motorRearLeftPower) {
-		// motorFrontRight.set(motorFrontRightPower);
-		// motorFrontLeft.set(motorFrontLeftPower);
-		// motorRearRight.set(motorRearRightPower);
-		// motorRearLeft.set(motorRearLeftPower);
+
+		motorFrontRight.set(motorFrontRightPower);
+		motorFrontLeft.set(-motorFrontLeftPower);
+		motorRearRight.set(motorRearRightPower);
+		motorRearLeft.set(-motorRearLeftPower);
 		SmartDashboard.putNumber("Motor Power: ", motorFrontRightPower);
 	}
 
@@ -88,35 +90,15 @@ public class Drive extends Subsystem {
 	public void turnAngleCCW() {
 		angleError = Math.abs(angleError);
 
-		if (angleError >= 20.0) {
-			setMotorPower(1, -1, 1, -1);
-
-		} else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
-			setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
-
-		} else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
-			setMotorPower(0.25, -0.25, 0.25, -0.25);
-
-		} else if (angleError < 0.1 && angleError > -0.1) {
-			stopMotors();
-		}
+		setMotorPower(motorCompAngle(angleError), -motorCompAngle(angleError), motorCompAngle(angleError),
+				-motorCompAngle(angleError));
 	}
 
 	public void turnAngleCW() {
-		angleError = -Math.abs(angleError);
+		angleError = Math.abs(angleError);
 
-		if (angleError >= 20.0) {
-			setMotorPower(1, -1, 1, -1);
-
-		} else if ((angleError <= 20.0 && angleError >= 5.0) || (angleError >= -20.0 && angleError <= -5.0)) {
-			setMotorPower(angleError / 20.0, -angleError / 20.0, angleError / 20.0, -angleError / 20.0);
-
-		} else if ((angleError < 5.0 && angleError >= 0.1) || (angleError > -5.0 && angleError <= -0.1)) {
-			setMotorPower(0.25, -0.25, 0.25, -0.25);
-
-		} else if (angleError < 0.1 && angleError > -0.1) {
-			stopMotors();
-		}
+		setMotorPower(-motorCompAngle(angleError), motorCompAngle(angleError), -motorCompAngle(angleError),
+				motorCompAngle(angleError));
 	}
 
 	public double angleErrorDriveStraight() {
@@ -135,6 +117,13 @@ public class Drive extends Subsystem {
 			return gyro.getAngle();
 		else
 			return 360 - gyro.getAngle();
+	}
+
+	public double motorCompAngle(double angleError) {
+		if ((angleError + 2) >= 45)
+			return 1.0;
+		else
+			return (1 / 1.65321) * Math.log10(angleError + 2);
 	}
 
 	public double getMotorSpeed(Encoder enc) {
@@ -158,13 +147,9 @@ public class Drive extends Subsystem {
 		return ((Math.abs(joyL) - Math.abs(joyR)) < 0.1);
 	}
 
-	// public void setEncoderDistance() {
-	//
-	// }
-
 	@Override
 	public void initDefaultCommand() {
-		setDefaultCommand(new TurnAngle(0));
+		setDefaultCommand(new DriveWithJoysticks());
 
 		gyro.calibrate();
 	}

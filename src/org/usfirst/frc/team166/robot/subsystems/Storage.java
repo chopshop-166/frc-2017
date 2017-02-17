@@ -1,6 +1,5 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -16,7 +15,8 @@ public class Storage extends Subsystem {
 	}
 
 	public void agitatorOn() {
-		exampleVictor.set(Preferences.getInstance().getDouble("Forward", 1.0));
+		// exampleVictor.set(Preferences.getInstance().getDouble("Forward", 1.0));
+		exampleVictor.set(0.8);
 
 	}
 

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team166.robot.commands.GearManipulator;
+package org.usfirst.frc.team166.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -7,30 +7,28 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class OpenManipulator extends Command {
+public class ClimberOn extends Command {
 
-	public OpenManipulator() {
+	public ClimberOn() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.gearManipulator);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.gearManipulator.open();
+		Robot.climber.climberOn();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	// Called once after isFinished returns true
@@ -42,6 +40,6 @@ public class OpenManipulator extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-
+		Robot.climber.climberOff();
 	}
 }
