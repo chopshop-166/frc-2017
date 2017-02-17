@@ -12,6 +12,7 @@ public class RobotMap {
 	public static int reverseSolenoid = 0;
 	// Motor Controllers
 	public static int frontRightMotor = 1;
+	public static int elevatorMotor = 2;
 	public static int frontLeftMotor = 3;
 	public static int rearRightMotor = 2;
 	public static int rearLeftMotor = 4;
