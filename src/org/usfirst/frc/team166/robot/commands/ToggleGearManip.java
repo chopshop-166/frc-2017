@@ -1,4 +1,4 @@
-package org.usfirst.frc.team166.robot.commands.GearManipulator;
+package org.usfirst.frc.team166.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -7,24 +7,20 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class OpenManipulator extends Command {
+public class ToggleGearManip extends Command {
 
-	public OpenManipulator() {
+	public ToggleGearManip() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.gearManipulator);
 	}
 
-	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.gearManipulator.open();
+		Robot.gearManipulator.togglesGearmanip();
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -42,6 +38,5 @@ public class OpenManipulator extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-
 	}
 }
