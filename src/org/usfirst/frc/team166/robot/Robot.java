@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team166.robot.subsystems.Climber;
 import org.usfirst.frc.team166.robot.subsystems.Drive;
 import org.usfirst.frc.team166.robot.subsystems.GearManipulator;
 import org.usfirst.frc.team166.robot.subsystems.Intake;
@@ -26,7 +27,7 @@ public class Robot extends IterativeRobot {
 	public static final Intake intake = new Intake();
 	public static final Shooter shooter = new Shooter();
 	public static final Storage storage = new Storage();
-
+	public static final Climber climber = new Climber();
 	public static OI oi;
 
 	Command autonomousCommand;

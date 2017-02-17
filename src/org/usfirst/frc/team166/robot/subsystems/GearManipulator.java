@@ -4,12 +4,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import org.usfirst.frc.team166.robot.RobotMap;
+
 /**
  *
  */
 public class GearManipulator extends Subsystem {
 
-	DoubleSolenoid manipulatorSolenoid = new DoubleSolenoid(1, 2);
+	DoubleSolenoid manipulatorSolenoid = new DoubleSolenoid(RobotMap.forwardSolenoid, RobotMap.reverseSolenoid);
 
 	@Override
 	public void initDefaultCommand() {

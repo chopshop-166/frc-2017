@@ -8,13 +8,15 @@ package org.usfirst.frc.team166.robot;
 public class RobotMap {
 
 	// Solenoids
-
+	public static int forwardSolenoid = 1;
+	public static int reverseSolenoid = 0;
 	// Motor Controllers
 	public static int frontRightMotor = 1;
 	public static int frontLeftMotor = 3;
 	public static int rearRightMotor = 2;
 	public static int rearLeftMotor = 4;
 	public static int augerMotor = 5;
+	public static int climberMotor = 0;
 	// Analog Sensors
 	public static int gyroPort = 0;
 

@@ -2,8 +2,12 @@ package org.usfirst.frc.team166.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team166.robot.commands.ClimberOn;
 import org.usfirst.frc.team166.robot.commands.ToggleGearManip;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.OpenManipulator;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
@@ -23,10 +27,12 @@ public class OI {
 		stickLeft = new Joystick(RobotMap.stickLeft);
 		stickRight = new Joystick(RobotMap.stickRight);
 		// gear manipulator on button A (toggle?)
-		testStick = new Joystick(2);
 
 		xbox = new Joystick(RobotMap.xboxPort);
 
+		SmartDashboard.putData(new OpenManipulator());
+		SmartDashboard.putData(new CloseManipulator());
+		SmartDashboard.putData(new ToggleGearManip());
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
 		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
 		JoystickButton button3Left = new JoystickButton(stickLeft, 3);
@@ -65,7 +71,8 @@ public class OI {
 		JoystickButton leftJoyXboxButton = new JoystickButton(xbox, 9);
 		JoystickButton rightJoyXboxButton = new JoystickButton(xbox, 10);
 
-		buttonA.toggleWhenPressed(new ToggleGearManip());
+		buttonA.whenPressed(new ToggleGearManip());
+		buttonX.whileHeld(new ClimberOn());
 	}
 
 	public double getLeftY() {
