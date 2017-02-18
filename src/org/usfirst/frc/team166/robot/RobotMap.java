@@ -11,12 +11,20 @@ public class RobotMap {
 	public static int forwardSolenoid = 1;
 	public static int reverseSolenoid = 0;
 	// Motor Controllers
+
+	// CAN[1] is right side and negative is forward
 	public static int frontRightMotor = 1;
+	// CAN[4] is right side and negative is forward
+	public static int rearRigthMotor = 4;
+
+	// CAN[3] is left side and positive is forward
 	public static int frontLeftMotor = 3;
-	public static int rearRightMotor = 2;
-	public static int rearLeftMotor = 4;
+	// CAN[2] is left side and positive is forward
+	public static int rearLeftMotor = 2;
+
 	public static int augerMotor = 5;
 	public static int climberMotor = 0;
+	public static int intakeMotor = 3;
 	// Analog Sensors
 	public static int gyroPort = 0;
 
@@ -32,6 +40,12 @@ public class RobotMap {
 	public static int stickLeft = 0;
 	public static int stickRight = 1;
 	public static int xboxPort = 2;
+
+	// Preferences
+	public static String intakeControllerSpeed = "IntakeControllerSpeed";
+	public static String climberMotorSpeed = "ClimberMotorSpeed";
+	public static String augerMotorSpeed = "AugerMotorSpeed";
+	public static String wheelDiameter = "WheelDiameter";
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
