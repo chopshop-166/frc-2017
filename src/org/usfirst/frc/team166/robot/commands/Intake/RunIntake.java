@@ -34,5 +34,6 @@ public class RunIntake extends Command {
 
 	@Override
 	protected void interrupted() {
+		Robot.intake.off();
 	}
 }

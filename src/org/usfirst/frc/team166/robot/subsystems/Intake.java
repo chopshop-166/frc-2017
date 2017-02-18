@@ -1,5 +1,6 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -15,18 +16,20 @@ public class Intake extends Subsystem {
 	//
 	//
 
-	Spark augerController = new Spark(RobotMap.augerMotor);
+	Spark intakeController = new Spark(RobotMap.intakeMotor);
 
 	@Override
 	public void initDefaultCommand() {
 
 	}
 
+	double intakeControllerSpeed;
+
 	public void on() {
-		augerController.set(.5);
+		intakeControllerSpeed = Preferences.getInstance().getDouble(RobotMap.intakeControllerSpeed, 0.0);
 	}
 
 	public void off() {
-		augerController.stopMotor();
+		intakeController.stopMotor();
 	}
 }
