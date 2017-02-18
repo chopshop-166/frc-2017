@@ -25,6 +25,7 @@ public class RobotMap {
 	public static int augerMotor = 5;
 	public static int climberMotor = 0;
 	public static int intakeMotor = 3;
+	public static int shooterMotor = 1;
 	// Analog Sensors
 	public static int gyroPort = 0;
 
@@ -45,6 +46,7 @@ public class RobotMap {
 	public static String intakeControllerSpeed = "IntakeControllerSpeed";
 	public static String climberMotorSpeed = "ClimberMotorSpeed";
 	public static String augerMotorSpeed = "AugerMotorSpeed";
+	public static String shooterMotorSpeed = "ShooterSpeed";
 	public static String wheelDiameter = "WheelDiameter";
 
 	// For example to map the left and right motors, you could define the
