@@ -1,9 +1,8 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
-import com.ctre.CANTalon;
-
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,14 +11,14 @@ import org.usfirst.frc.team166.robot.RobotMap;
 import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
 
 /**
- *
+ * TEMPORARALY REMOVED CAN FROM CANTALON TO MAKE SOFTWARE MERGEABLE
  */
 public class Drive extends Subsystem {
 
-	CANTalon motorFrontRight = new CANTalon(RobotMap.frontRightMotor);
-	CANTalon motorFrontLeft = new CANTalon(RobotMap.frontLeftMotor);
-	CANTalon motorRearRight = new CANTalon(RobotMap.rearRightMotor);
-	CANTalon motorRearLeft = new CANTalon(RobotMap.rearLeftMotor);
+	Talon motorFrontRight = new Talon(RobotMap.frontRightMotor);
+	Talon motorFrontLeft = new Talon(RobotMap.frontLeftMotor);
+	Talon motorRearRight = new Talon(RobotMap.rearRightMotor);
+	Talon motorRearLeft = new Talon(RobotMap.rearLeftMotor);
 
 	Encoder encoderRight = new Encoder(RobotMap.rightEncoderA, RobotMap.rightEncoderB);
 	Encoder encoderLeft = new Encoder(RobotMap.leftEncoderA, RobotMap.leftEncoderB);
