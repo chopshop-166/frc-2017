@@ -29,6 +29,7 @@ public class OI {
 		SmartDashboard.putData(new CloseManipulator());
 		SmartDashboard.putData(new ToggleGearManip());
 		SmartDashboard.putData(new ClimberOn());
+		SmartDashboard.putData(new RunIntake());
 
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
 		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
@@ -79,7 +80,7 @@ public class OI {
 	}
 
 	public double getLeftY() {
-		return stickLeft.getY();
+		return -stickLeft.getY();
 	}
 
 	// public double getLeftX() {

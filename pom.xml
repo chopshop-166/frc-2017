@@ -47,7 +47,7 @@
     <dependency>
       <groupId>edu.wpi.first.wpilibj</groupId>
       <artifactId>athena</artifactId>
-      <version>2017.2.1</version>
+      <version>2017.3.1</version>
     </dependency>
     <dependency>
       <groupId>thirdparty.frc.ctre</groupId>

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,8 +22,10 @@ public class Climber extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
+	double climberMotorSpeed;
+
 	public void climberOn() {
-		climberMotor.set(-0.8);
+		climberMotorSpeed = Preferences.getInstance().getDouble(RobotMap.climberMotorSpeed, 0.0);
 	}
 
 	public void climberOff() {

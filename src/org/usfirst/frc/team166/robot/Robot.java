@@ -42,7 +42,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		// SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putData(drive);
 	}
 
 	/**
