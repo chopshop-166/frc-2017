@@ -26,6 +26,7 @@ public class RobotMap {
 	public static int climberMotor = 0;
 	public static int intakeMotor = 3;
 	public static int shooterMotor = 1;
+	public static int elevatorMotor = 2;
 	// Analog Sensors
 	public static int gyroPort = 0;
 
