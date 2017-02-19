@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
 import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
-import org.usfirst.frc.team166.robot.commands.centerGearAutonomous;
+import org.usfirst.frc.team166.robot.commands.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
@@ -37,7 +37,7 @@ public class OI {
 		double distance = Preferences.getInstance().getDouble(RobotMap.desiredDistance, 0.0);
 		SmartDashboard.putData(new DriveDistance(distance, speed));
 
-		SmartDashboard.putData(new centerGearAutonomous());
+		SmartDashboard.putData(new CenterGearAutonomous());
 
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
 		JoystickButton button2Left = new JoystickButton(stickLeft, 2);

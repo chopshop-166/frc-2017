@@ -10,9 +10,9 @@ import org.usfirst.frc.team166.robot.commands.GearManipulator.OpenManipulator;
 /**
  *
  */
-public class centerGearAutonomous extends CommandGroup {
+public class CenterGearAutonomous extends CommandGroup {
 
-	public centerGearAutonomous() {
+	public CenterGearAutonomous() {
 
 		// double distance = Preferences.getInstance().getDouble(RobotMap.desiredDistance, 0.0);
 		// SmartDashboard.putData(new DriveDistance(distance, speed));
