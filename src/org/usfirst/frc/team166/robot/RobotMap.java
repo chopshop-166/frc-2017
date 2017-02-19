@@ -60,5 +60,4 @@ public class RobotMap {
 	public static String autoWaitTime = "Center Gear Auto Wait Time";
 	public static String autoWaitTime2 = "Center Gear Auto Wait Time 2 ";
 	public static String centerGearAutoDistanceBackwards = "Center Gear Auto Distance Backwards";
-	public static String elevatorMotorSpeed = "Elevator Motor Speed";
 }
