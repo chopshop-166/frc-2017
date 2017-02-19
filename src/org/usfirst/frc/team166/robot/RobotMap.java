@@ -44,19 +44,8 @@ public class RobotMap {
 	public static int xboxPort = 2;
 
 	// Preferences
-	public static String intakeControllerSpeed = "IntakeControllerSpeed";
-	public static String climberMotorSpeed = "ClimberMotorSpeed";
-	public static String augerMotorSpeed = "AugerMotorSpeed";
-	public static String shooterMotorSpeed = "ShooterSpeed";
-	public static String wheelDiameter = "WheelDiameter";
-
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
-
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
+	public static String intakeControllerSpeed = "Intake Controller Speed";
+	public static String climberMotorSpeed = "Climber Motor Speed";
+	public static String augerMotorSpeed = "Auger Motor Speed";
+	public static String shooterMotorSpeed = "Shooter Speed";
 }
