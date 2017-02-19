@@ -44,9 +44,10 @@ public class Robot extends IterativeRobot {
 		Robot.gearManipulator.close();
 		oi = new OI();
 		chooser.addObject("Center Gear Auto", new CenterGearAutonomous());
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
+
 		SmartDashboard.putData("Auto Mode", chooser);
-		// SmartDashboard.putData(drive);
 	}
 
 	/**
