@@ -1,14 +1,15 @@
 package org.usfirst.frc.team166.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.ClimberOn;
+import org.usfirst.frc.team166.robot.commands.DriveDistance;
 import org.usfirst.frc.team166.robot.commands.ToggleGearManip;
-import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
-import org.usfirst.frc.team166.robot.commands.GearManipulator.OpenManipulator;
+import org.usfirst.frc.team166.robot.commands.centerGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
 
 /**
@@ -25,11 +26,17 @@ public class OI {
 
 	public OI() {
 
-		SmartDashboard.putData(new OpenManipulator());
-		SmartDashboard.putData(new CloseManipulator());
-		SmartDashboard.putData(new ToggleGearManip());
-		SmartDashboard.putData(new ClimberOn());
-		SmartDashboard.putData(new RunIntake());
+		// SmartDashboard.putData(new OpenManipulator());
+		// SmartDashboard.putData(new CloseManipulator());
+		// SmartDashboard.putData(new ToggleGearManip());
+		// SmartDashboard.putData(new ClimberOn());
+		// SmartDashboard.putData(new RunIntake());
+		//
+		double speed = Preferences.getInstance().getDouble(RobotMap.desiredSpeed, 0.0);
+		double distance = Preferences.getInstance().getDouble(RobotMap.desiredDistance, 0.0);
+		SmartDashboard.putData(new DriveDistance(distance, speed));
+
+		SmartDashboard.putData(new centerGearAutonomous());
 
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
 		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
@@ -88,7 +95,7 @@ public class OI {
 	// }
 
 	public double getRightY() {
-		return stickRight.getY();
+		return -stickRight.getY();
 	}
 
 	// public double getRightX() {
