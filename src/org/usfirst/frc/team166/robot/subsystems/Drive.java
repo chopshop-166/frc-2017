@@ -26,8 +26,18 @@ public class Drive extends Subsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
-	public double wheelDiameter = 4;
+	private static final double wheelDiameter = 4;
+	private static final int pulsesPerRevolution = 360;
 	public double angleError;
+
+	public Drive() { // constructor
+		encoderLeft.setReverseDirection(true);
+		encoderRight.setDistancePerPulse((Math.PI * wheelDiameter) / pulsesPerRevolution);
+		encoderLeft.setDistancePerPulse((Math.PI * wheelDiameter) / pulsesPerRevolution);
+
+		motorFrontRight.setInverted(true);
+		motorRearRight.setInverted(true);
+	}
 
 	public void setMotorPower(double rightPower, double leftPower) {
 		motorFrontRight.set(rightPower);
@@ -35,6 +45,10 @@ public class Drive extends Subsystem {
 
 		motorFrontLeft.set(leftPower);
 		motorRearLeft.set(leftPower);
+
+		SmartDashboard.putNumber("Right Encoder Distance: ", encoderRight.getDistance());
+		SmartDashboard.putNumber("Left Encoder Distance: ", encoderLeft.getDistance());
+
 	}
 
 	public void driveStraight(double motorPower) {
@@ -137,6 +151,10 @@ public class Drive extends Subsystem {
 	public void resetEncoders() {
 		encoderRight.reset();
 		encoderLeft.reset();
+	}
+
+	public void invertEncoders() {
+		encoderLeft.setReverseDirection(true);
 	}
 
 	public boolean areJoysticksInDeadzone() {
