@@ -4,7 +4,6 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,13 +12,12 @@ import org.usfirst.frc.team166.robot.RobotMap;
 import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
 
 /**
- *
+ * TEMPORARALY REMOVED CAN FROM CANTALON TO MAKE SOFTWARE MERGEABLE
  */
 public class Drive extends Subsystem {
 
 	CANTalon motorFrontRight = new CANTalon(RobotMap.frontRightMotor);
 	CANTalon motorRearRight = new CANTalon(RobotMap.rearRigthMotor);
-
 	CANTalon motorFrontLeft = new CANTalon(RobotMap.frontLeftMotor);
 	CANTalon motorRearLeft = new CANTalon(RobotMap.rearLeftMotor);
 
@@ -28,8 +26,7 @@ public class Drive extends Subsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
-	public double wheelDiameter = Preferences.getInstance().getDouble(RobotMap.wheelDiameter, 4.0);
-
+	public double wheelDiameter = 4;
 	public double angleError;
 
 	public void setMotorPower(double rightPower, double leftPower) {

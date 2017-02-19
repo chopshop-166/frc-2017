@@ -19,12 +19,9 @@ public class Storage extends Subsystem {
 
 	public void agitatorOn() {
 
-		double augerMotorSpeed;
+		// TODO set Preference to 0.8
+		augerMotor.set(Math.abs(Preferences.getInstance().getDouble(RobotMap.augerMotorSpeed, 0)));
 
-		augerMotorSpeed = Preferences.getInstance().getDouble(RobotMap.augerMotorSpeed, 0); // TODO set Preference to
-																							// 0.8
-
-		augerMotor.set(Math.abs(augerMotorSpeed));
 	}
 
 	public void agitatorOff() {

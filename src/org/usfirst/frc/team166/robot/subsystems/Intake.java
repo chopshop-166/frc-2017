@@ -13,8 +13,6 @@ public class Intake extends Subsystem {
 	// 2 states: on&off.
 	// On has the needed engines pulling balls in
 	// Off has those engines disabled
-	//
-	//
 
 	Spark intakeController = new Spark(RobotMap.intakeMotor);
 
@@ -22,8 +20,6 @@ public class Intake extends Subsystem {
 	public void initDefaultCommand() {
 
 	}
-
-	double intakeControllerSpeed;
 
 	public void on() {
 		intakeControllerSpeed = Preferences.getInstance().getDouble(RobotMap.intakeControllerSpeed, 0.0);

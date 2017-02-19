@@ -19,8 +19,7 @@ public class Shooter extends Subsystem {
 	double shooterMotorSpeed;
 
 	public void start() {
-		shooterMotorSpeed = Preferences.getInstance().getDouble(RobotMap.shooterMotorSpeed, 0.0);
-
+		shooterMotor.set(Preferences.getInstance().getDouble(RobotMap.shooterMotorSpeed, 0.0));
 	}
 
 	public void stop() {
