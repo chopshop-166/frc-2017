@@ -1,8 +1,9 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,34 +16,32 @@ import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
  */
 public class Drive extends Subsystem {
 
-	Talon motorFrontRight = new Talon(RobotMap.frontRightMotor);
-	Talon motorFrontLeft = new Talon(RobotMap.frontLeftMotor);
-	Talon motorRearRight = new Talon(RobotMap.rearRightMotor);
-	Talon motorRearLeft = new Talon(RobotMap.rearLeftMotor);
+	CANTalon motorFrontRight = new CANTalon(RobotMap.frontRightMotor);
+	CANTalon motorRearRight = new CANTalon(RobotMap.rearRigthMotor);
+	CANTalon motorFrontLeft = new CANTalon(RobotMap.frontLeftMotor);
+	CANTalon motorRearLeft = new CANTalon(RobotMap.rearLeftMotor);
 
 	Encoder encoderRight = new Encoder(RobotMap.rightEncoderA, RobotMap.rightEncoderB);
 	Encoder encoderLeft = new Encoder(RobotMap.leftEncoderA, RobotMap.leftEncoderB);
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
-	public double wheelDiameter = 4.0; // inches
+	public double wheelDiameter = 4;
 	public double angleError;
 
-	public void setMotorPower(double motorFrontRightPower, double motorFrontLeftPower, double motorRearRightPower,
-			double motorRearLeftPower) {
+	public void setMotorPower(double rightPower, double leftPower) {
+		motorFrontRight.set(rightPower);
+		motorRearRight.set(rightPower);
 
-		motorFrontRight.set(motorFrontRightPower);
-		motorFrontLeft.set(-motorFrontLeftPower);
-		motorRearRight.set(motorRearRightPower);
-		motorRearLeft.set(-motorRearLeftPower);
-		SmartDashboard.putNumber("Motor Power: ", motorFrontRightPower);
+		motorFrontLeft.set(leftPower);
+		motorRearLeft.set(leftPower);
 	}
 
 	public void driveStraight(double motorPower) {
 		double compensatedPowerRight = motorPower + motorCompDriveStraight(motorPower);
 		double compensatedPowerLeft = motorPower - motorCompDriveStraight(motorPower);
 
-		setMotorPower(compensatedPowerRight, compensatedPowerLeft, compensatedPowerRight, compensatedPowerLeft);
+		setMotorPower(compensatedPowerRight, compensatedPowerLeft);
 	}
 
 	public double getDistanceSinceLastReset() {
@@ -54,15 +53,17 @@ public class Drive extends Subsystem {
 	}
 
 	public void stopMotors() {
-		setMotorPower(0, 0, 0, 0);
+		setMotorPower(0, 0);
 	}
 
 	public void driveJoysticks(double rightJoyVal, double leftJoyVal) {
 		// if (areJoysticksInDeadzone()) {
 		// stopMotors();
 		// } else {
-		setMotorPower(Math.pow(rightJoyVal, 3), Math.pow(leftJoyVal, 3), Math.pow(rightJoyVal, 3),
-				Math.pow(leftJoyVal, 3));
+		double RightPower = Math.pow(rightJoyVal, 3);
+		double LeftPower = Math.pow(leftJoyVal, 3);
+
+		setMotorPower(RightPower, LeftPower);
 		// }
 	}
 
@@ -89,15 +90,13 @@ public class Drive extends Subsystem {
 	public void turnAngleCCW() {
 		angleError = Math.abs(angleError);
 
-		setMotorPower(motorCompAngle(angleError), -motorCompAngle(angleError), motorCompAngle(angleError),
-				-motorCompAngle(angleError));
+		setMotorPower(motorCompAngle(angleError), -motorCompAngle(angleError));
 	}
 
 	public void turnAngleCW() {
 		angleError = Math.abs(angleError);
 
-		setMotorPower(-motorCompAngle(angleError), motorCompAngle(angleError), -motorCompAngle(angleError),
-				motorCompAngle(angleError));
+		setMotorPower(-motorCompAngle(angleError), motorCompAngle(angleError));
 	}
 
 	public double angleErrorDriveStraight() {
@@ -150,6 +149,6 @@ public class Drive extends Subsystem {
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveWithJoysticks());
 
-		gyro.calibrate();
+		// gyro.calibrate();
 	}
 }
