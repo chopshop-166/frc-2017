@@ -47,9 +47,14 @@ public class RobotMap {
 	public static String intakeControllerSpeed = "Intake Controller Speed";
 	public static String climberMotorSpeed = "Climber Motor Speed";
 	public static String augerMotorSpeed = "Auger Motor Speed";
+	public static String elevatorMotorSpeed = "Elevator Motor Speed";
 	public static String shooterMotorSpeed = "Shooter Speed";
+
+	// Preferences for testing distance commands
 	public static String desiredDistance = "Desired Distance";
 	public static String desiredSpeed = "Desired Speed";
+
+	// Center Gear Auto command preferences
 	public static String centerGearAutoSpeed = "Center Gear Auto Speed";
 	public static String centerGearAutoDistance = "Center Gear Auto Distance";
 	public static String autoWaitTime = "Center Gear Auto Wait Time";

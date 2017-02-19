@@ -15,21 +15,16 @@ public class Elevator extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-
 	}
 
 	double elevatorMotorSpeed;
 
 	public void start() {
-
 		elevatorMotorSpeed = Preferences.getInstance().getDouble(RobotMap.elevatorMotorSpeed, 0.0);
 		elevatorMotor.set(elevatorMotorSpeed);
-
 	}
 
 	public void stop() {
-
 		elevatorMotor.stopMotor();
-
 	}
 }
