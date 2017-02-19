@@ -16,8 +16,11 @@ public class Climber extends Subsystem {
 	public void initDefaultCommand() {
 	}
 
+	double climberMotorSpeed;
+
 	public void climberOn() {
-		climberMotor.set(Preferences.getInstance().getDouble(RobotMap.climberMotorSpeed, 0.0));
+		climberMotorSpeed = Preferences.getInstance().getDouble(RobotMap.climberMotorSpeed, 0.0);
+		climberMotor.set(climberMotorSpeed);
 	}
 
 	public void climberOff() {
