@@ -1,4 +1,4 @@
-package org.usfirst.frc.team166.robot.commands;
+package org.usfirst.frc.team166.robot.commands.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -7,18 +7,20 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class ToggleGearManip extends Command {
+public class ClimberOn extends Command {
 
-	public ToggleGearManip() {
+	public ClimberOn() {
 		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+		requires(Robot.climber);
 	}
 
+	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.gearManipulator.togglesGearmanip();
+		Robot.climber.climberOn();
 	}
 
+	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 	}
@@ -26,7 +28,7 @@ public class ToggleGearManip extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	// Called once after isFinished returns true
@@ -38,5 +40,6 @@ public class ToggleGearManip extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		Robot.climber.climberOff();
 	}
 }

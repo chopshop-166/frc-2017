@@ -12,13 +12,12 @@ import org.usfirst.frc.team166.robot.RobotMap;
 import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
 
 /**
- *
+ * TEMPORARALY REMOVED CAN FROM CANTALON TO MAKE SOFTWARE MERGEABLE
  */
 public class Drive extends Subsystem {
 
 	CANTalon motorFrontRight = new CANTalon(RobotMap.frontRightMotor);
 	CANTalon motorRearRight = new CANTalon(RobotMap.rearRigthMotor);
-
 	CANTalon motorFrontLeft = new CANTalon(RobotMap.frontLeftMotor);
 	CANTalon motorRearLeft = new CANTalon(RobotMap.rearLeftMotor);
 
