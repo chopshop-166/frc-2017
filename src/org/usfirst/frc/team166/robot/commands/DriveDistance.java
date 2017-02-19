@@ -13,7 +13,7 @@ public class DriveDistance extends Command {
 
 	public DriveDistance(double desiredDistance, double desiredSpeed) {
 		requires(Robot.drive);
-		distance = desiredDistance;
+		distance = Math.abs(desiredDistance);
 		speed = desiredSpeed;
 	}
 

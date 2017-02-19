@@ -10,6 +10,7 @@ import org.usfirst.frc.team166.robot.commands.ClimberOn;
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
 import org.usfirst.frc.team166.robot.commands.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.centerGearAutonomous;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
 
 /**
@@ -37,6 +38,8 @@ public class OI {
 		SmartDashboard.putData(new DriveDistance(distance, speed));
 
 		SmartDashboard.putData(new centerGearAutonomous());
+
+		SmartDashboard.putData(new CloseManipulator());
 
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
 		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
