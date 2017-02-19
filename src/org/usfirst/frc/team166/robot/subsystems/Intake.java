@@ -21,6 +21,8 @@ public class Intake extends Subsystem {
 
 	}
 
+	double intakeControllerSpeed;
+
 	public void on() {
 		intakeControllerSpeed = Preferences.getInstance().getDouble(RobotMap.intakeControllerSpeed, 0.0);
 		intakeController.set(intakeControllerSpeed);

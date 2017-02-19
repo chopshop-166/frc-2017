@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
 import org.usfirst.frc.team166.robot.commands.centerGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
@@ -26,12 +27,12 @@ public class OI {
 
 	public OI() {
 
-		// SmartDashboard.putData(new OpenManipulator());
-		// SmartDashboard.putData(new CloseManipulator());
-		// SmartDashboard.putData(new ToggleGearManip());
-		// SmartDashboard.putData(new ClimberOn());
-		// SmartDashboard.putData(new RunIntake());
-		//
+		SmartDashboard.putData(new OpenManipulator());
+		SmartDashboard.putData(new CloseManipulator());
+		SmartDashboard.putData(new ToggleGearManip());
+		SmartDashboard.putData(new ClimberOn());
+		SmartDashboard.putData(new RunIntake());
+		SmartDashboard.putData(new ShooterCommandGroup());
 		double speed = Preferences.getInstance().getDouble(RobotMap.desiredSpeed, 0.0);
 		double distance = Preferences.getInstance().getDouble(RobotMap.desiredDistance, 0.0);
 		SmartDashboard.putData(new DriveDistance(distance, speed));
@@ -80,7 +81,7 @@ public class OI {
 
 		buttonA.whenPressed(new ToggleGearManip());
 		buttonX.whileHeld(new ClimberOn());
-
+		buttonB.whileHeld(new ShooterCommandGroup());
 		// Double joystick commands
 
 		rightJoyTrigger.whileHeld(new RunIntake());
