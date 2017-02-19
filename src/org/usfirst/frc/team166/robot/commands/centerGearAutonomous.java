@@ -24,5 +24,11 @@ public class centerGearAutonomous extends CommandGroup {
 		addSequential(new DriveDistance(centerGearAutoDistance, centerGearAutoSpeed), 5.0);
 		addSequential(new WaitCommand(autoWaitTime));
 		addSequential(new OpenManipulator());
+
+		double autoWaitTime2 = Preferences.getInstance().getDouble(RobotMap.autoWaitTime2, 0.0);
+		addSequential(new WaitCommand(autoWaitTime2));
+		double centerGearAutoDistanceBackwards = Preferences.getInstance()
+				.getDouble(RobotMap.centerGearAutoDistanceBackwards, 0.0);
+		addSequential(new DriveDistance(centerGearAutoDistanceBackwards, -0.25));
 	}
 }

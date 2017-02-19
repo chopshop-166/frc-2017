@@ -73,7 +73,7 @@ public class Drive extends Subsystem {
 	}
 
 	public double getDistanceSinceLastReset() {
-		return (encoderRight.getDistance() + encoderLeft.getDistance()) / 2;
+		return Math.abs((encoderRight.getDistance() + encoderLeft.getDistance()) / 2);
 	}
 
 	public boolean hasDrivenDistance(double distInches) {
