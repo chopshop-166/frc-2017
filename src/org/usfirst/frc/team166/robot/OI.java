@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
+import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
 import org.usfirst.frc.team166.robot.commands.centerGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
@@ -27,8 +27,8 @@ public class OI {
 
 	public OI() {
 
-		SmartDashboard.putData(new OpenManipulator());
-		SmartDashboard.putData(new CloseManipulator());
+		// SmartDashboard.putData(new OpenManipulator());
+		// SmartDashboard.putData(new CloseManipulator());
 		SmartDashboard.putData(new ToggleGearManip());
 		SmartDashboard.putData(new ClimberOn());
 		SmartDashboard.putData(new RunIntake());

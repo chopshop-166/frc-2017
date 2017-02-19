@@ -22,13 +22,13 @@ public class DriveDistance extends Command {
 	protected void initialize() {
 		// Robot.drive.resetGyro();
 		Robot.drive.resetEncoders();
-		Robot.drive.setMotorPower(speed, speed);
+		// Robot.drive.setMotorPower(speed, speed);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		// Robot.drive.driveStraight(speed);
+		Robot.drive.driveStraight(speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

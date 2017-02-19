@@ -55,7 +55,21 @@ public class Drive extends Subsystem {
 		double compensatedPowerRight = motorPower + motorCompDriveStraight(motorPower);
 		double compensatedPowerLeft = motorPower - motorCompDriveStraight(motorPower);
 
-		setMotorPower(compensatedPowerRight, compensatedPowerLeft);
+		if (compensatedPowerRight > 1.0) {
+			setMotorPower(1.0, compensatedPowerLeft);
+
+		} else if (compensatedPowerRight < 1.0) {
+			setMotorPower(-1.0, compensatedPowerLeft);
+
+		} else if (compensatedPowerLeft > 1.0) {
+			setMotorPower(compensatedPowerRight, 1.0);
+
+		} else if (compensatedPowerLeft < 1.0) {
+			setMotorPower(compensatedPowerRight, -1.0);
+
+		} else {
+			setMotorPower(compensatedPowerRight, compensatedPowerLeft);
+		}
 	}
 
 	public double getDistanceSinceLastReset() {
@@ -82,9 +96,8 @@ public class Drive extends Subsystem {
 	}
 
 	public double motorCompDriveStraight(double motorPower) {
-		// double angularVelocity = gyro.getRate();
-		// return motorPower * (angularVelocity / 10);
-		return (angleErrorDriveStraight() / 10.0) * motorPower;
+		double distDifference = encoderLeft.getDistance() - encoderRight.getDistance();
+		return (distDifference / 2.0) * motorPower;
 	}
 
 	public void turnAngle(double desiredAngle) {
