@@ -12,15 +12,16 @@ import org.usfirst.frc.team166.robot.RobotMap;
 public class Climber extends Subsystem {
 	Victor climberMotor = new Victor(RobotMap.climberMotor);
 
+	public Climber() {
+		climberMotor.setInverted(true);
+	}
+
 	@Override
 	public void initDefaultCommand() {
 	}
 
-	double climberMotorSpeed;
-
 	public void climberOn() {
-		climberMotorSpeed = Preferences.getInstance().getDouble(RobotMap.climberMotorSpeed, 0.0);
-		climberMotor.set(climberMotorSpeed);
+		climberMotor.set(Math.abs(Preferences.getInstance().getDouble(RobotMap.climberMotorSpeed, 0.0)));
 	}
 
 	public void climberOff() {
