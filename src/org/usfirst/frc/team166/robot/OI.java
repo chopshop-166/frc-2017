@@ -82,10 +82,9 @@ public class OI {
 
 		JoystickButton leftJoyXboxButton = new JoystickButton(xbox, 9);
 		JoystickButton rightJoyXboxButton = new JoystickButton(xbox, 10);
-
 		// Xbox commands
 
-		buttonA.whenPressed(new ToggleGearManip());
+		// buttonA.whenPressed(new ToggleGearManip());
 		buttonX.whileHeld(new ClimberOn());
 		buttonB.whileHeld(new ShooterCommandGroup());
 		buttonB.whenReleased(new AugerOff());
@@ -107,6 +106,14 @@ public class OI {
 
 	public double getRightY() {
 		return -stickRight.getY();
+	}
+
+	public double getCopilotLeftTrigger() {
+		return xbox.getRawAxis(1);
+	}
+
+	public double getCopilotRightTrigger() {
+		return xbox.getRawAxis(2);
 	}
 
 	// public double getRightX() {
