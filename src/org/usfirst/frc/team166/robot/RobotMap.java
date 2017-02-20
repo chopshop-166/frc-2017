@@ -33,10 +33,10 @@ public class RobotMap {
 	// Digital Sensors
 
 	// Encoders
-	public static int rightEncoderA = 1;
-	public static int rightEncoderB = 2;
-	public static int leftEncoderA = 3;
-	public static int leftEncoderB = 4;
+	public static int rightEncoderA = 0;
+	public static int rightEncoderB = 1;
+	public static int leftEncoderA = 2;
+	public static int leftEncoderB = 3;
 
 	// Joysticks
 	public static int stickLeft = 0;
@@ -47,5 +47,17 @@ public class RobotMap {
 	public static String intakeControllerSpeed = "Intake Controller Speed";
 	public static String climberMotorSpeed = "Climber Motor Speed";
 	public static String augerMotorSpeed = "Auger Motor Speed";
+	public static String elevatorMotorSpeed = "Elevator Motor Speed";
 	public static String shooterMotorSpeed = "Shooter Speed";
+
+	// Preferences for testing distance commands
+	public static String desiredDistance = "Desired Distance";
+	public static String desiredSpeed = "Desired Speed";
+
+	// Center Gear Auto command preferences
+	public static String centerGearAutoSpeed = "Center Gear Auto Speed";
+	public static String centerGearAutoDistance = "Center Gear Auto Distance";
+	public static String autoWaitTime = "Center Gear Auto Wait Time";
+	public static String autoWaitTime2 = "Center Gear Auto Wait Time 2 ";
+	public static String centerGearAutoDistanceBackwards = "Center Gear Auto Distance Backwards";
 }

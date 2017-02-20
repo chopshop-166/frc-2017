@@ -26,8 +26,18 @@ public class Drive extends Subsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
-	public double wheelDiameter = 4;
+	private static final double wheelDiameter = 4;
+	private static final int pulsesPerRevolution = 360;
 	public double angleError;
+
+	public Drive() { // constructor
+		encoderLeft.setReverseDirection(true);
+		encoderRight.setDistancePerPulse((Math.PI * wheelDiameter) / pulsesPerRevolution);
+		encoderLeft.setDistancePerPulse((Math.PI * wheelDiameter) / pulsesPerRevolution);
+
+		motorFrontRight.setInverted(true);
+		motorRearRight.setInverted(true);
+	}
 
 	public void setMotorPower(double rightPower, double leftPower) {
 		motorFrontRight.set(rightPower);
@@ -35,17 +45,35 @@ public class Drive extends Subsystem {
 
 		motorFrontLeft.set(leftPower);
 		motorRearLeft.set(leftPower);
+
+		SmartDashboard.putNumber("Right Encoder Distance: ", encoderRight.getDistance());
+		SmartDashboard.putNumber("Left Encoder Distance: ", encoderLeft.getDistance());
+
 	}
 
 	public void driveStraight(double motorPower) {
 		double compensatedPowerRight = motorPower + motorCompDriveStraight(motorPower);
 		double compensatedPowerLeft = motorPower - motorCompDriveStraight(motorPower);
 
-		setMotorPower(compensatedPowerRight, compensatedPowerLeft);
+		if (compensatedPowerRight > 1.0) {
+			setMotorPower(1.0, compensatedPowerLeft);
+
+		} else if (compensatedPowerRight < 1.0) {
+			setMotorPower(-1.0, compensatedPowerLeft);
+
+		} else if (compensatedPowerLeft > 1.0) {
+			setMotorPower(compensatedPowerRight, 1.0);
+
+		} else if (compensatedPowerLeft < 1.0) {
+			setMotorPower(compensatedPowerRight, -1.0);
+
+		} else {
+			setMotorPower(compensatedPowerRight, compensatedPowerLeft);
+		}
 	}
 
 	public double getDistanceSinceLastReset() {
-		return (encoderRight.getDistance() + encoderLeft.getDistance()) / 2;
+		return Math.abs((encoderRight.getDistance() + encoderLeft.getDistance()) / 2);
 	}
 
 	public boolean hasDrivenDistance(double distInches) {
@@ -68,9 +96,8 @@ public class Drive extends Subsystem {
 	}
 
 	public double motorCompDriveStraight(double motorPower) {
-		// double angularVelocity = gyro.getRate();
-		// return motorPower * (angularVelocity / 10);
-		return (angleErrorDriveStraight() / 10.0) * motorPower;
+		double distDifference = encoderLeft.getDistance() - encoderRight.getDistance();
+		return (distDifference / 2.0) * motorPower;
 	}
 
 	public void turnAngle(double desiredAngle) {
@@ -137,6 +164,10 @@ public class Drive extends Subsystem {
 	public void resetEncoders() {
 		encoderRight.reset();
 		encoderLeft.reset();
+	}
+
+	public void invertEncoders() {
+		encoderLeft.setReverseDirection(true);
 	}
 
 	public boolean areJoysticksInDeadzone() {
