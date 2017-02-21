@@ -7,17 +7,17 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class ClimberOn extends Command {
+public class ElevatorOff extends Command {
 
-	public ClimberOn() {
+	public ElevatorOff() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.climber);
+		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.climber.climberOn();
+		Robot.elevator.stop();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -40,6 +40,5 @@ public class ClimberOn extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.climber.climberOff();
 	}
 }

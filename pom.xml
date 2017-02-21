@@ -50,6 +50,11 @@
       <version>2017.3.1</version>
     </dependency>
     <dependency>
+      <groupId>org.opencv</groupId>
+      <artifactId>opencv-java</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    <dependency>
       <groupId>thirdparty.frc.ctre</groupId>
       <artifactId>Toolsuite-Java</artifactId>
       <version>4.4.1.9</version>

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team166.robot.commands;
+package org.usfirst.frc.team166.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -7,35 +7,32 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class ToggleGearManip extends Command {
+public class RunShooter extends Command {
 
-	public ToggleGearManip() {
+	public RunShooter() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.gearManipulator.togglesGearmanip();
+		Robot.shooter.shooterOn();
 	}
 
 	@Override
 	protected void execute() {
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return Robot.shooter.hasRunFor(5.0);
 	}
 
-	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
 	}

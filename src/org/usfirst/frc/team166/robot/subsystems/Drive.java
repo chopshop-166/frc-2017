@@ -4,7 +4,6 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,13 +12,12 @@ import org.usfirst.frc.team166.robot.RobotMap;
 import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
 
 /**
- *
+ * TEMPORARALY REMOVED CAN FROM CANTALON TO MAKE SOFTWARE MERGEABLE
  */
 public class Drive extends Subsystem {
 
 	CANTalon motorFrontRight = new CANTalon(RobotMap.frontRightMotor);
 	CANTalon motorRearRight = new CANTalon(RobotMap.rearRigthMotor);
-
 	CANTalon motorFrontLeft = new CANTalon(RobotMap.frontLeftMotor);
 	CANTalon motorRearLeft = new CANTalon(RobotMap.rearLeftMotor);
 
@@ -28,9 +26,18 @@ public class Drive extends Subsystem {
 
 	AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
-	public double wheelDiameter = Preferences.getInstance().getDouble(RobotMap.wheelDiameter, 4.0);
-
+	private static final double wheelDiameter = 4;
+	private static final int pulsesPerRevolution = 360;
 	public double angleError;
+
+	public Drive() { // constructor
+		encoderLeft.setReverseDirection(true);
+		encoderRight.setDistancePerPulse((Math.PI * wheelDiameter) / pulsesPerRevolution);
+		encoderLeft.setDistancePerPulse((Math.PI * wheelDiameter) / pulsesPerRevolution);
+
+		motorFrontRight.setInverted(true);
+		motorRearRight.setInverted(true);
+	}
 
 	public void setMotorPower(double rightPower, double leftPower) {
 		motorFrontRight.set(rightPower);
@@ -38,17 +45,42 @@ public class Drive extends Subsystem {
 
 		motorFrontLeft.set(leftPower);
 		motorRearLeft.set(leftPower);
+
+		SmartDashboard.putNumber("Right Encoder Distance: ", encoderRight.getDistance());
+		SmartDashboard.putNumber("Left Encoder Distance: ", encoderLeft.getDistance());
 	}
 
 	public void driveStraight(double motorPower) {
 		double compensatedPowerRight = motorPower + motorCompDriveStraight(motorPower);
 		double compensatedPowerLeft = motorPower - motorCompDriveStraight(motorPower);
 
+		if (compensatedPowerRight > 1.0) {
+			setMotorPower(1.0, compensatedPowerLeft);
+
+		} else if (compensatedPowerRight < 1.0) {
+			setMotorPower(-1.0, compensatedPowerLeft);
+
+		} else if (compensatedPowerLeft > 1.0) {
+			setMotorPower(compensatedPowerRight, 1.0);
+
+		} else if (compensatedPowerLeft < 1.0) {
+			setMotorPower(compensatedPowerRight, -1.0);
+
+		} else {
+			setMotorPower(compensatedPowerRight, compensatedPowerLeft);
+		}
+	}
+
+	public void driveStraightGyro(double motorPower) {
+		double angleError = angleErrorDriveStraight();
+		double compensatedPowerRight = motorPower + motorCompDriveStraightGyro(angleError);
+		double compensatedPowerLeft = motorPower - motorCompDriveStraightGyro(angleError);
+
 		setMotorPower(compensatedPowerRight, compensatedPowerLeft);
 	}
 
 	public double getDistanceSinceLastReset() {
-		return (encoderRight.getDistance() + encoderLeft.getDistance()) / 2;
+		return (encoderRight.getDistance() + encoderLeft.getDistance() / 2);
 	}
 
 	public boolean hasDrivenDistance(double distInches) {
@@ -71,9 +103,17 @@ public class Drive extends Subsystem {
 	}
 
 	public double motorCompDriveStraight(double motorPower) {
-		// double angularVelocity = gyro.getRate();
-		// return motorPower * (angularVelocity / 10);
-		return (angleErrorDriveStraight() / 10.0) * motorPower;
+		double distDifference = encoderLeft.getDistance() - encoderRight.getDistance();
+		return (distDifference / 2.0) * motorPower;
+	}
+
+	public double motorCompDriveStraightGyro(double angleError) {
+		// double distDifference = encoderLeft.getDistance() - encoderRight.getDistance();
+		// return (distDifference / 2.0) * motorPower;
+		if (angleError >= 0.0)
+			return (-1.0 * ((1 / (Math.abs(angleError / 5.0) + 1.0)) + 1.0));
+		else
+			return ((1.0 / (Math.abs(angleError / 5.0) + 1.0)) - 1.0);
 	}
 
 	public void turnAngle(double desiredAngle) {
@@ -105,10 +145,10 @@ public class Drive extends Subsystem {
 	public double angleErrorDriveStraight() {
 		double getAngle = gyro.getAngle();
 
-		if (getAngle <= 180)
-			return gyro.getAngle();
+		if (getAngle < 0)
+			return -360.0 + gyro.getAngle();
 		else
-			return gyro.getAngle() - 360;
+			return gyro.getAngle();
 	}
 
 	public double angleError() {
@@ -140,6 +180,10 @@ public class Drive extends Subsystem {
 	public void resetEncoders() {
 		encoderRight.reset();
 		encoderLeft.reset();
+	}
+
+	public void invertEncoders() {
+		encoderLeft.setReverseDirection(true);
 	}
 
 	public boolean areJoysticksInDeadzone() {

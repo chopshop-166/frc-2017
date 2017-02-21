@@ -13,14 +13,16 @@ public class DriveDistance extends Command {
 
 	public DriveDistance(double desiredDistance, double desiredSpeed) {
 		requires(Robot.drive);
-		distance = desiredDistance;
+		distance = Math.abs(desiredDistance);
 		speed = desiredSpeed;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.drive.resetGyro();
+		// Robot.drive.resetGyro();
+		Robot.drive.resetEncoders();
+		// Robot.drive.setMotorPower(speed, speed);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -45,6 +47,6 @@ public class DriveDistance extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.drive.stopMotors();
+		end();
 	}
 }

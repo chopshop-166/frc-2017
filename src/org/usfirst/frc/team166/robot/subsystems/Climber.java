@@ -12,20 +12,16 @@ import org.usfirst.frc.team166.robot.RobotMap;
 public class Climber extends Subsystem {
 	Victor climberMotor = new Victor(RobotMap.climberMotor);
 
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+	public Climber() {
+		climberMotor.setInverted(true);
+	}
 
 	@Override
 	public void initDefaultCommand() {
-
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 
-	double climberMotorSpeed;
-
 	public void climberOn() {
-		climberMotorSpeed = Preferences.getInstance().getDouble(RobotMap.climberMotorSpeed, 0.0);
+		climberMotor.set(Math.abs(Preferences.getInstance().getDouble(RobotMap.climberMotorSpeed, 0.0)));
 	}
 
 	public void climberOff() {

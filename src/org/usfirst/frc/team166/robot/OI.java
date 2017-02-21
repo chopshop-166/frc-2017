@@ -1,15 +1,19 @@
 package org.usfirst.frc.team166.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team166.robot.commands.ClimberOn;
-import org.usfirst.frc.team166.robot.commands.ToggleGearManip;
+import org.usfirst.frc.team166.robot.commands.DriveDistance;
+import org.usfirst.frc.team166.robot.commands.DriveStraightGyro;
+import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
+import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
-import org.usfirst.frc.team166.robot.commands.GearManipulator.OpenManipulator;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
+import org.usfirst.frc.team166.robot.commands.Shooter.ShooterCommandGroup;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
@@ -25,11 +29,21 @@ public class OI {
 
 	public OI() {
 
-		SmartDashboard.putData(new OpenManipulator());
-		SmartDashboard.putData(new CloseManipulator());
+		// SmartDashboard.putData(new OpenManipulator());
+		// SmartDashboard.putData(new CloseManipulator());
 		SmartDashboard.putData(new ToggleGearManip());
 		SmartDashboard.putData(new ClimberOn());
 		SmartDashboard.putData(new RunIntake());
+		SmartDashboard.putData(new ShooterCommandGroup());
+		double speed = Preferences.getInstance().getDouble(RobotMap.desiredSpeed, 0.0);
+		double distance = Preferences.getInstance().getDouble(RobotMap.desiredDistance, 0.0);
+		SmartDashboard.putData(new DriveDistance(distance, speed));
+
+		SmartDashboard.putData(new CenterGearAutonomous());
+
+		SmartDashboard.putData(new CloseManipulator());
+
+		SmartDashboard.putData(new DriveStraightGyro());
 
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
 		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
@@ -73,10 +87,11 @@ public class OI {
 
 		buttonA.whenPressed(new ToggleGearManip());
 		buttonX.whileHeld(new ClimberOn());
-
+		buttonB.whileHeld(new ShooterCommandGroup());
 		// Double joystick commands
 
 		rightJoyTrigger.whileHeld(new RunIntake());
+		leftJoyTrigger.whenPressed(new DriveStraightGyro());
 	}
 
 	public double getLeftY() {
@@ -88,7 +103,15 @@ public class OI {
 	// }
 
 	public double getRightY() {
-		return stickRight.getY();
+		return -stickRight.getY();
+	}
+
+	public double getCopilotLeftTrigger() {
+		return xbox.getRawAxis(1);
+	}
+
+	public double getCopilotRightTrigger() {
+		return xbox.getRawAxis(2);
 	}
 
 	// public double getRightX() {
