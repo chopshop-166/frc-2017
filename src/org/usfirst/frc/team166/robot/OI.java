@@ -7,21 +7,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
-import org.usfirst.frc.team166.robot.commands.ElevatorOff;
-import org.usfirst.frc.team166.robot.commands.RunShooter;
-import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
-import org.usfirst.frc.team166.robot.commands.ShooterOff;
-import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.StopShooterProcess;
+import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
 import org.usfirst.frc.team166.robot.commands.Shooter.ShooterCommandGroup;
-import org.usfirst.frc.team166.robot.commands.Shooter.ShooterOff;
-import org.usfirst.frc.team166.robot.commands.Storage.AugerOff;
-import org.usfirst.frc.team166.robot.subsystems.XboxLeftTrigger;
-import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
@@ -51,45 +43,45 @@ public class OI {
 		SmartDashboard.putData(new CenterGearAutonomous());
 		SmartDashboard.putData(new CloseManipulator());
 
-		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
-		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
-		JoystickButton button3Left = new JoystickButton(stickLeft, 3);
-		JoystickButton button4Left = new JoystickButton(stickLeft, 4);
-		JoystickButton button5Left = new JoystickButton(stickLeft, 5);
-		JoystickButton button6Left = new JoystickButton(stickLeft, 6);
-		JoystickButton button7Left = new JoystickButton(stickLeft, 7);
-		JoystickButton button8Left = new JoystickButton(stickLeft, 8);
-		JoystickButton button9Left = new JoystickButton(stickLeft, 9);
-		JoystickButton button10Left = new JoystickButton(stickLeft, 10);
-		JoystickButton button11Left = new JoystickButton(stickLeft, 11);
+		// JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
+		// JoystickButton button2Left = new JoystickButton(stickLeft, 2);
+		// JoystickButton button3Left = new JoystickButton(stickLeft, 3);
+		// JoystickButton button4Left = new JoystickButton(stickLeft, 4);
+		// JoystickButton button5Left = new JoystickButton(stickLeft, 5);
+		// JoystickButton button6Left = new JoystickButton(stickLeft, 6);
+		// JoystickButton button7Left = new JoystickButton(stickLeft, 7);
+		// JoystickButton button8Left = new JoystickButton(stickLeft, 8);
+		// JoystickButton button9Left = new JoystickButton(stickLeft, 9);
+		// JoystickButton button10Left = new JoystickButton(stickLeft, 10);
+		// JoystickButton button11Left = new JoystickButton(stickLeft, 11);
 
 		JoystickButton rightJoyTrigger = new JoystickButton(stickRight, 1);
-		JoystickButton button2Right = new JoystickButton(stickRight, 2);
-		JoystickButton button3Right = new JoystickButton(stickRight, 3);
-		JoystickButton button4Right = new JoystickButton(stickRight, 4);
-		JoystickButton button5Right = new JoystickButton(stickRight, 5);
-		JoystickButton button6Right = new JoystickButton(stickRight, 6);
-		JoystickButton button7Right = new JoystickButton(stickRight, 7);
-		JoystickButton button8Right = new JoystickButton(stickRight, 8);
-		JoystickButton button9Right = new JoystickButton(stickRight, 9);
-		JoystickButton button10Right = new JoystickButton(stickRight, 10);
-		JoystickButton button11Right = new JoystickButton(stickRight, 11);
+		// JoystickButton button2Right = new JoystickButton(stickRight, 2);
+		// JoystickButton button3Right = new JoystickButton(stickRight, 3);
+		// JoystickButton button4Right = new JoystickButton(stickRight, 4);
+		// JoystickButton button5Right = new JoystickButton(stickRight, 5);
+		// JoystickButton button6Right = new JoystickButton(stickRight, 6);
+		// JoystickButton button7Right = new JoystickButton(stickRight, 7);
+		// JoystickButton button8Right = new JoystickButton(stickRight, 8);
+		// JoystickButton button9Right = new JoystickButton(stickRight, 9);
+		// JoystickButton button10Right = new JoystickButton(stickRight, 10);
+		// JoystickButton button11Right = new JoystickButton(stickRight, 11);
 
-		JoystickButton buttonA = new JoystickButton(xbox, 1);
+		// JoystickButton buttonA = new JoystickButton(xbox, 1);
 		JoystickButton buttonB = new JoystickButton(xbox, 2);
 		JoystickButton buttonX = new JoystickButton(xbox, 3);
-		JoystickButton buttonY = new JoystickButton(xbox, 4);
-		XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
-		XboxRightTrigger xboxRightTrigger = new XboxRightTrigger();
+		// JoystickButton buttonY = new JoystickButton(xbox, 4);
+		// XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
+		// XboxRightTrigger xboxRightTrigger = new XboxRightTrigger();
 
-		JoystickButton leftButton = new JoystickButton(xbox, 5);
-		JoystickButton rightButton = new JoystickButton(xbox, 6);
-
-		JoystickButton back = new JoystickButton(xbox, 7);
-		JoystickButton start = new JoystickButton(xbox, 8);
-
-		JoystickButton leftJoyXboxButton = new JoystickButton(xbox, 9);
-		JoystickButton rightJoyXboxButton = new JoystickButton(xbox, 10);
+		// JoystickButton leftButton = new JoystickButton(xbox, 5);
+		// JoystickButton rightButton = new JoystickButton(xbox, 6);
+		//
+		// JoystickButton back = new JoystickButton(xbox, 7);
+		// JoystickButton start = new JoystickButton(xbox, 8);
+		//
+		// JoystickButton leftJoyXboxButton = new JoystickButton(xbox, 9);
+		// JoystickButton rightJoyXboxButton = new JoystickButton(xbox, 10);
 		// Xbox commands
 
 		// buttonA.whenPressed(new ToggleGearManip());
@@ -97,8 +89,8 @@ public class OI {
 		buttonB.whileHeld(new ShooterCommandGroup());
 		buttonB.whenReleased(new StopShooterProcess());
 
-		xboxLeftTrigger.whenActive(new ToggleGearManip());
-		xboxRightTrigger.whenActive(new RunShooter());
+		// xboxLeftTrigger.whenActive(new ToggleGearManip());
+		// xboxRightTrigger.whenActive(new RunShooter());
 
 		// Double joystick commands
 
