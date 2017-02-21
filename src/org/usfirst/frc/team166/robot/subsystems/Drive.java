@@ -110,7 +110,10 @@ public class Drive extends Subsystem {
 	public double motorCompDriveStraightGyro(double angleError) {
 		// double distDifference = encoderLeft.getDistance() - encoderRight.getDistance();
 		// return (distDifference / 2.0) * motorPower;
-		return (1 / (Math.abs(angleError / 5.0) + 1.0)) + 1.0;
+		if (angleError >= 0.0)
+			return (-1.0 * ((1 / (Math.abs(angleError / 5.0) + 1.0)) + 1.0));
+		else
+			return ((1.0 / (Math.abs(angleError / 5.0) + 1.0)) - 1.0);
 	}
 
 	public void turnAngle(double desiredAngle) {
