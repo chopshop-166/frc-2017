@@ -89,7 +89,7 @@ public class OI {
 		// Double joystick commands
 
 		rightJoyTrigger.whileHeld(new RunIntake());
-		leftJoyTrigger.whenPressed(new DriveStraightGyro(0, 0));
+		leftJoyTrigger.whenPressed(new DriveStraightGyro());
 	}
 
 	public double getLeftY() {
