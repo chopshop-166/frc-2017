@@ -48,7 +48,6 @@ public class Drive extends Subsystem {
 
 		SmartDashboard.putNumber("Right Encoder Distance: ", encoderRight.getDistance());
 		SmartDashboard.putNumber("Left Encoder Distance: ", encoderLeft.getDistance());
-
 	}
 
 	public void driveStraight(double motorPower) {

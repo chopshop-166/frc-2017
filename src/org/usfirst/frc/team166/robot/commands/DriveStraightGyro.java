@@ -1,6 +1,8 @@
 package org.usfirst.frc.team166.robot.commands;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.Robot;
 
@@ -8,13 +10,14 @@ import org.usfirst.frc.team166.robot.Robot;
  *
  */
 public class DriveStraightGyro extends Command {
-	double distance;
-	double power;
+	double distance = Preferences.getInstance().getDouble("Distance driven with gyro", 0.0);
+	double power = Preferences.getInstance().getDouble("Speed to drive with gyro", 0.0);
 
-	public DriveStraightGyro(double desiredDistance, double desiredPower) {
+	public DriveStraightGyro(/* double desiredDistance, double desiredPower */) {
 		requires(Robot.drive);
-		distance = desiredDistance;
-		power = desiredPower;
+		// distance = desiredDistance;
+		// power = desiredPower;
+		SmartDashboard.putData("DriveStraightGyro", new DriveStraightGyro());
 	}
 
 	// Called just before this Command runs the first time
