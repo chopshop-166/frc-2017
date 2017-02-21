@@ -43,6 +43,8 @@ public class OI {
 
 		SmartDashboard.putData(new CloseManipulator());
 
+		SmartDashboard.putData(new DriveStraightGyro());
+
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
 		JoystickButton button2Left = new JoystickButton(stickLeft, 2);
 		JoystickButton button3Left = new JoystickButton(stickLeft, 3);

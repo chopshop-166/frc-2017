@@ -2,7 +2,6 @@ package org.usfirst.frc.team166.robot.commands;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.Robot;
 
@@ -17,7 +16,6 @@ public class DriveStraightGyro extends Command {
 		requires(Robot.drive);
 		// distance = desiredDistance;
 		// power = desiredPower;
-		SmartDashboard.putData("DriveStraightGyro", new DriveStraightGyro());
 	}
 
 	// Called just before this Command runs the first time
