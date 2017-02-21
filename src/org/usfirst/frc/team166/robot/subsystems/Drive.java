@@ -52,24 +52,25 @@ public class Drive extends Subsystem {
 	}
 
 	public void driveStraight(double motorPower) {
-		double compensatedPowerRight = motorPower + motorCompDriveStraight(motorPower);
-		double compensatedPowerLeft = motorPower - motorCompDriveStraight(motorPower);
-
-		if (compensatedPowerRight > 1.0) {
-			setMotorPower(1.0, compensatedPowerLeft);
-
-		} else if (compensatedPowerRight < 1.0) {
-			setMotorPower(-1.0, compensatedPowerLeft);
-
-		} else if (compensatedPowerLeft > 1.0) {
-			setMotorPower(compensatedPowerRight, 1.0);
-
-		} else if (compensatedPowerLeft < 1.0) {
-			setMotorPower(compensatedPowerRight, -1.0);
-
-		} else {
-			setMotorPower(compensatedPowerRight, compensatedPowerLeft);
-		}
+		setMotorPower(motorPower, motorPower);
+		// double compensatedPowerRight = motorPower + motorCompDriveStraight(motorPower);
+		// double compensatedPowerLeft = motorPower - motorCompDriveStraight(motorPower);
+		//
+		// if (compensatedPowerRight > 1.0) {
+		// setMotorPower(1.0, compensatedPowerLeft);
+		//
+		// } else if (compensatedPowerRight < 1.0) {
+		// setMotorPower(-1.0, compensatedPowerLeft);
+		//
+		// } else if (compensatedPowerLeft > 1.0) {
+		// setMotorPower(compensatedPowerRight, 1.0);
+		//
+		// } else if (compensatedPowerLeft < 1.0) {
+		// setMotorPower(compensatedPowerRight, -1.0);
+		//
+		// } else {
+		// setMotorPower(compensatedPowerRight, compensatedPowerLeft);
+		// }
 	}
 
 	public double getDistanceSinceLastReset() {

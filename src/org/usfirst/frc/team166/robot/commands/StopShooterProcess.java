@@ -2,6 +2,7 @@ package org.usfirst.frc.team166.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import org.usfirst.frc.team166.robot.commands.Shooter.ShooterOff;
 import org.usfirst.frc.team166.robot.commands.Storage.AugerOff;
 
 /**

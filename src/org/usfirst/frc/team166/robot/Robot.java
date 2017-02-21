@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team166.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -8,7 +7,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team166.robot.commands.CenterGearAutonomous;
+import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Disable;
 import org.usfirst.frc.team166.robot.commands.Autonomous.BaseLineAutonomous;
 import org.usfirst.frc.team166.robot.subsystems.Climber;
@@ -18,6 +17,7 @@ import org.usfirst.frc.team166.robot.subsystems.GearManipulator;
 import org.usfirst.frc.team166.robot.subsystems.Intake;
 import org.usfirst.frc.team166.robot.subsystems.Shooter;
 import org.usfirst.frc.team166.robot.subsystems.Storage;
+import org.usfirst.frc.team166.robot.subsystems.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
 	public static final Storage storage = new Storage();
 	public static final Climber climber = new Climber();
 	public static final Elevator elevator = new Elevator();
+	public static final Vision vision = new Vision();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -52,6 +53,8 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
 		SmartDashboard.putData("Auto Mode", chooser);
+		// SmartDashboard.putData(drive);
+
 	}
 
 	/**
