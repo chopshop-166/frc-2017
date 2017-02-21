@@ -5,15 +5,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team166.robot.Robot;
 
 /**
- * DO NOT USE; I DON'T THINK IT CURRENTLY WORKS!!
+ *
  */
-public class TurnAngle extends Command {
+public class DriveStraightGyro extends Command {
+	double distance;
+	double power;
 
-	double angle;
-
-	public TurnAngle(double desiredAngle) {
+	public DriveStraightGyro(double desiredDistance, double desiredPower) {
 		requires(Robot.drive);
-		angle = desiredAngle;
+		distance = desiredDistance;
+		power = desiredPower;
 	}
 
 	// Called just before this Command runs the first time
@@ -25,13 +26,13 @@ public class TurnAngle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.turnAngle(angle);
+		Robot.drive.driveStraightGyro(power);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.angleError() < 0.1 && Robot.drive.angleError() > -0.1;
+		return Robot.drive.hasDrivenDistance(distance);
 	}
 
 	// Called once after isFinished returns true
@@ -44,6 +45,6 @@ public class TurnAngle extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.drive.stopMotors();
+		end();
 	}
 }
