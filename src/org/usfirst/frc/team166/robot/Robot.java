@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team166.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -48,6 +47,8 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
 		SmartDashboard.putData("Auto Mode", chooser);
+		// SmartDashboard.putData(drive);
+
 	}
 
 	/**
