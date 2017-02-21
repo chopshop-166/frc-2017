@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.CenterGearAutonomous;
-import org.usfirst.frc.team166.robot.commands.RunShooter;
-import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.subsystems.Climber;
 import org.usfirst.frc.team166.robot.subsystems.Drive;
 import org.usfirst.frc.team166.robot.subsystems.Elevator;
@@ -17,8 +15,6 @@ import org.usfirst.frc.team166.robot.subsystems.GearManipulator;
 import org.usfirst.frc.team166.robot.subsystems.Intake;
 import org.usfirst.frc.team166.robot.subsystems.Shooter;
 import org.usfirst.frc.team166.robot.subsystems.Storage;
-import org.usfirst.frc.team166.robot.subsystems.XboxLeftTrigger;
-import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
@@ -35,9 +31,6 @@ public class Robot extends IterativeRobot {
 	public static final Climber climber = new Climber();
 	public static final Elevator elevator = new Elevator();
 	public static OI oi;
-
-	private XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
-	private XboxRightTrigger xboxRightTrigger = new XboxRightTrigger();
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -56,8 +49,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto Mode", chooser);
 		// SmartDashboard.putData(drive);
 
-		xboxLeftTrigger.whenActive(new ToggleGearManip());
-		xboxRightTrigger.whenActive(new RunShooter());
 	}
 
 	/**
