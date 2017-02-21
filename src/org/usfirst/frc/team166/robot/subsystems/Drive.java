@@ -50,6 +50,10 @@ public class Drive extends Subsystem {
 		SmartDashboard.putNumber("Left Encoder Distance: ", encoderLeft.getDistance());
 	}
 
+	public double getGyroAngle() {
+		return gyro.getAngle();
+	}
+
 	public void driveStraight(double motorPower) {
 		double compensatedPowerRight = motorPower + motorCompDriveStraight(motorPower);
 		double compensatedPowerLeft = motorPower - motorCompDriveStraight(motorPower);
@@ -110,10 +114,13 @@ public class Drive extends Subsystem {
 	public double motorCompDriveStraightGyro(double angleError) {
 		// double distDifference = encoderLeft.getDistance() - encoderRight.getDistance();
 		// return (distDifference / 2.0) * motorPower;
+		double compPower = -(1.0 / (Math.abs(angleError / 5.0) + 1.0)) + 1.0;
+		SmartDashboard.putNumber("Power added", compPower);
 		if (angleError >= 0.0)
-			return (-1.0 * ((1 / (Math.abs(angleError / 5.0) + 1.0)) + 1.0));
+			return -compPower;
 		else
-			return ((1.0 / (Math.abs(angleError / 5.0) + 1.0)) - 1.0);
+			return compPower;
+
 	}
 
 	public void turnAngle(double desiredAngle) {
@@ -145,7 +152,7 @@ public class Drive extends Subsystem {
 	public double angleErrorDriveStraight() {
 		double getAngle = gyro.getAngle();
 
-		if (getAngle < 0)
+		if (getAngle > 180)
 			return -360.0 + gyro.getAngle();
 		else
 			return gyro.getAngle();

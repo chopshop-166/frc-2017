@@ -91,7 +91,7 @@ public class OI {
 		// Double joystick commands
 
 		rightJoyTrigger.whileHeld(new RunIntake());
-		leftJoyTrigger.whenPressed(new DriveStraightGyro());
+		leftJoyTrigger.whileHeld(new DriveStraightGyro());
 	}
 
 	public double getLeftY() {
@@ -104,6 +104,16 @@ public class OI {
 
 	public double getRightY() {
 		return -stickRight.getY();
+	}
+
+	public int getCopilotLeftTrigger() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getCopilotRightTrigger() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	// public double getRightX() {
