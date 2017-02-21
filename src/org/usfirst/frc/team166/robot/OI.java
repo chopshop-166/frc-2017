@@ -6,13 +6,19 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team166.robot.commands.DriveDistance;
-import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
 import org.usfirst.frc.team166.robot.commands.CenterGearAutonomous;
+import org.usfirst.frc.team166.robot.commands.DriveDistance;
+import org.usfirst.frc.team166.robot.commands.ElevatorOff;
+import org.usfirst.frc.team166.robot.commands.RunShooter;
+import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
+import org.usfirst.frc.team166.robot.commands.ShooterOff;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
-import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
+import org.usfirst.frc.team166.robot.commands.Storage.AugerOff;
+import org.usfirst.frc.team166.robot.subsystems.XboxLeftTrigger;
+import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
@@ -34,12 +40,12 @@ public class OI {
 		SmartDashboard.putData(new ClimberOn());
 		SmartDashboard.putData(new RunIntake());
 		SmartDashboard.putData(new ShooterCommandGroup());
+
 		double speed = Preferences.getInstance().getDouble(RobotMap.desiredSpeed, 0.0);
 		double distance = Preferences.getInstance().getDouble(RobotMap.desiredDistance, 0.0);
+
 		SmartDashboard.putData(new DriveDistance(distance, speed));
-
 		SmartDashboard.putData(new CenterGearAutonomous());
-
 		SmartDashboard.putData(new CloseManipulator());
 
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
@@ -70,6 +76,8 @@ public class OI {
 		JoystickButton buttonB = new JoystickButton(xbox, 2);
 		JoystickButton buttonX = new JoystickButton(xbox, 3);
 		JoystickButton buttonY = new JoystickButton(xbox, 4);
+		XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
+		XboxRightTrigger xboxRightTrigger = new XboxRightTrigger();
 
 		JoystickButton leftButton = new JoystickButton(xbox, 5);
 		JoystickButton rightButton = new JoystickButton(xbox, 6);
@@ -79,12 +87,18 @@ public class OI {
 
 		JoystickButton leftJoyXboxButton = new JoystickButton(xbox, 9);
 		JoystickButton rightJoyXboxButton = new JoystickButton(xbox, 10);
-
 		// Xbox commands
 
-		buttonA.whenPressed(new ToggleGearManip());
+		// buttonA.whenPressed(new ToggleGearManip());
 		buttonX.whileHeld(new ClimberOn());
 		buttonB.whileHeld(new ShooterCommandGroup());
+		buttonB.whenReleased(new AugerOff());
+		buttonB.whenReleased(new ShooterOff());
+		buttonB.whenReleased(new ElevatorOff());
+
+		xboxLeftTrigger.whenActive(new ToggleGearManip());
+		xboxRightTrigger.whenActive(new RunShooter());
+
 		// Double joystick commands
 
 		rightJoyTrigger.whileHeld(new RunIntake());
@@ -100,6 +114,14 @@ public class OI {
 
 	public double getRightY() {
 		return -stickRight.getY();
+	}
+
+	public double getCopilotLeftTrigger() {
+		return xbox.getRawAxis(1);
+	}
+
+	public double getCopilotRightTrigger() {
+		return xbox.getRawAxis(2);
 	}
 
 	// public double getRightX() {
