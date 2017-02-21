@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team166.robot.commands.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
 import org.usfirst.frc.team166.robot.commands.ElevatorOff;
-import org.usfirst.frc.team166.robot.commands.RunShooter;
 import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
 import org.usfirst.frc.team166.robot.commands.ShooterOff;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
@@ -17,8 +16,6 @@ import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
 import org.usfirst.frc.team166.robot.commands.Storage.AugerOff;
-import org.usfirst.frc.team166.robot.subsystems.XboxLeftTrigger;
-import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
@@ -76,8 +73,6 @@ public class OI {
 		JoystickButton buttonB = new JoystickButton(xbox, 2);
 		JoystickButton buttonX = new JoystickButton(xbox, 3);
 		JoystickButton buttonY = new JoystickButton(xbox, 4);
-		XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
-		XboxRightTrigger xboxRightTrigger = new XboxRightTrigger();
 
 		JoystickButton leftButton = new JoystickButton(xbox, 5);
 		JoystickButton rightButton = new JoystickButton(xbox, 6);
@@ -95,9 +90,6 @@ public class OI {
 		buttonB.whenReleased(new AugerOff());
 		buttonB.whenReleased(new ShooterOff());
 		buttonB.whenReleased(new ElevatorOff());
-
-		xboxLeftTrigger.whenActive(new ToggleGearManip());
-		xboxRightTrigger.whenActive(new RunShooter());
 
 		// Double joystick commands
 
