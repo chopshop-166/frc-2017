@@ -1,8 +1,10 @@
 package org.usfirst.frc.team166.robot.commands;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team166.robot.Robot;
+import org.usfirst.frc.team166.robot.RobotMap;
 
 /**
  *
@@ -25,7 +27,10 @@ public class RunShooter extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.shooter.hasRunFor(5.0);
+
+		double waitForShooter = Preferences.getInstance().getDouble(RobotMap.waitForShooter, 5.0);
+		return Robot.shooter.hasRunFor(waitForShooter);
+
 	}
 
 	@Override

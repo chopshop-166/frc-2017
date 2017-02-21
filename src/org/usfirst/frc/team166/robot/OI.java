@@ -8,14 +8,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
-import org.usfirst.frc.team166.robot.commands.ElevatorOff;
 import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
-import org.usfirst.frc.team166.robot.commands.ShooterOff;
+import org.usfirst.frc.team166.robot.commands.StopShooterProcess;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
-import org.usfirst.frc.team166.robot.commands.Storage.AugerOff;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
@@ -88,9 +86,7 @@ public class OI {
 		buttonA.whenPressed(new ToggleGearManip());
 		buttonX.whileHeld(new ClimberOn());
 		buttonB.whileHeld(new ShooterCommandGroup());
-		buttonB.whenReleased(new AugerOff());
-		buttonB.whenReleased(new ShooterOff());
-		buttonB.whenReleased(new ElevatorOff());
+		buttonB.whenReleased(new StopShooterProcess());
 
 		// Double joystick commands
 

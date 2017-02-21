@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.CenterGearAutonomous;
+import org.usfirst.frc.team166.robot.commands.Disable;
+import org.usfirst.frc.team166.robot.commands.Autonomous.BaseLineAutonomous;
 import org.usfirst.frc.team166.robot.subsystems.Climber;
 import org.usfirst.frc.team166.robot.subsystems.Drive;
 import org.usfirst.frc.team166.robot.subsystems.Elevator;
@@ -43,7 +45,9 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		Robot.gearManipulator.close();
 		oi = new OI();
-		chooser.addObject("Center Gear Auto", new CenterGearAutonomous());
+		chooser.addDefault("Center Gear Auto", new CenterGearAutonomous());
+		chooser.addObject("Base Line Autonomous", new BaseLineAutonomous());
+		chooser.addObject("Do Nothing Autonomous", null);
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
@@ -56,7 +60,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		new Disable().start();
 	}
 
 	@Override
@@ -104,6 +108,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+
+		new Disable().start();
 	}
 
 	/**

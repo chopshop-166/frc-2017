@@ -58,6 +58,11 @@ public class RobotMap {
 	public static String centerGearAutoSpeed = "Center Gear Auto Speed";
 	public static String centerGearAutoDistance = "Center Gear Auto Distance";
 	public static String autoWaitTime = "Center Gear Auto Wait Time";
-	public static String autoWaitTime2 = "Center Gear Auto Wait Time 2 ";
+	public static String autoWaitTime2 = "Center Gear Auto Wait Time 2";
 	public static String centerGearAutoDistanceBackwards = "Center Gear Auto Distance Backwards";
+	public static String waitForShooter = "Wait For Shooter";
+
+	// Base Line Auto command preferences
+	public static String baseLineDistance = "Base Line Distance";
+	public static String baseLineSpeed = "Base Line Speed";
 }
