@@ -8,14 +8,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.DriveDistance;
 import org.usfirst.frc.team166.robot.commands.DriveStraightGyro;
-import org.usfirst.frc.team166.robot.commands.ShooterCommandGroup;
 import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
 import org.usfirst.frc.team166.robot.commands.Shooter.ShooterCommandGroup;
-import org.usfirst.frc.team166.robot.commands.Shooter.ShooterOff;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
