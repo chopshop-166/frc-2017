@@ -60,5 +60,8 @@ public class RobotMap {
 	public static String autoWaitTime = "Center Gear Auto Wait Time";
 	public static String autoWaitTime2 = "Center Gear Auto Wait Time 2 ";
 	public static String centerGearAutoDistanceBackwards = "Center Gear Auto Distance Backwards";
+	public static String speedToDriveWithGyro = "Speed To Drive With Gyro";
+	public static String distanceToDriveWithGyro = "Distance To Drive With Gyro";
+	public static String driveGyroPower = "Drive Gyro Power";
 	// public static String elevatorMotorSpeed = "Elevator Motor Speed";
 }
