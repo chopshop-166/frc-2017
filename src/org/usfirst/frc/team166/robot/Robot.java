@@ -1,6 +1,7 @@
 package org.usfirst.frc.team166.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -8,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.CenterGearAutonomous;
+import org.usfirst.frc.team166.robot.commands.DriveStraightAuto;
 import org.usfirst.frc.team166.robot.subsystems.Climber;
 import org.usfirst.frc.team166.robot.subsystems.Drive;
 import org.usfirst.frc.team166.robot.subsystems.Elevator;
@@ -42,13 +44,15 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		Robot.gearManipulator.close();
 		oi = new OI();
-		chooser.addObject("Center Gear Auto", new CenterGearAutonomous());
+		chooser.addDefault("Center Gear Auto", new CenterGearAutonomous());
 
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		double speed = Preferences.getInstance().getDouble(RobotMap.centerGearAutoSpeed, 0);
+		double distance = Preferences.getInstance().getDouble(RobotMap.centerGearAutoDistance, 0);
+		chooser.addObject("Base Line", new DriveStraightAuto(distance, speed));
+
+		chooser.addObject("None", null);
 
 		SmartDashboard.putData("Auto Mode", chooser);
-		// SmartDashboard.putData(drive);
-
 	}
 
 	/**
