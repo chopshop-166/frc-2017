@@ -1,7 +1,6 @@
 package org.usfirst.frc.team166.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.Robot;
 
@@ -19,15 +18,12 @@ public class DriveWithJoysticks extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		// Robot.drive.resetEncoders();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		Robot.drive.driveJoysticks(Robot.oi.getRightY(), Robot.oi.getLeftY());
-		SmartDashboard.putNumber("Angle", Robot.drive.getGyroAngle());
-		SmartDashboard.putNumber("Angle Error", Robot.drive.angleErrorDriveStraight());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

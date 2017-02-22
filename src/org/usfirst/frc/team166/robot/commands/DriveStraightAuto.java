@@ -16,6 +16,7 @@ public class DriveStraightAuto extends Command {
 
 		distance = desiredDistance;
 		speed = desiredSpeed;
+
 	}
 
 	// Called just before this Command runs the first time
