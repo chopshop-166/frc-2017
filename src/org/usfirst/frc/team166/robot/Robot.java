@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
-import org.usfirst.frc.team166.robot.commands.RunShooter;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
+import org.usfirst.frc.team166.robot.commands.Shooter.RunShooter;
 import org.usfirst.frc.team166.robot.subsystems.Climber;
 import org.usfirst.frc.team166.robot.subsystems.Drive;
 import org.usfirst.frc.team166.robot.subsystems.Elevator;
@@ -17,9 +17,9 @@ import org.usfirst.frc.team166.robot.subsystems.GearManipulator;
 import org.usfirst.frc.team166.robot.subsystems.Intake;
 import org.usfirst.frc.team166.robot.subsystems.Shooter;
 import org.usfirst.frc.team166.robot.subsystems.Storage;
+import org.usfirst.frc.team166.robot.subsystems.Vision;
 import org.usfirst.frc.team166.robot.subsystems.XboxLeftTrigger;
 import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
-import org.usfirst.frc.team166.robot.subsystems.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
