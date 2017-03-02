@@ -18,12 +18,12 @@ public class EmergencyTimeAutonomous extends CommandGroup {
 		addSequential(new WaitCommand(1));
 		addSequential(new OpenManipulator());
 		addSequential(new WaitCommand(1));
-		addSequential(new CloseManipulator());
 		addSequential(new DriveTime(.294, -1.0));
+		addSequential(new CloseManipulator());
 		addSequential(new WaitCommand(1));
-		addSequential(new TurnAngle(270));
+		addSequential(new TurnAngle(90));
 		addSequential(new DriveTime(1, 1.0));
-		addSequential(new TurnAngle(270));
+		addSequential(new TurnAngle(-90));
 		addSequential(new DriveTime(.3, 1.0));
 	}
 }
