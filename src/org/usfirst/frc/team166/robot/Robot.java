@@ -1,13 +1,17 @@
 package org.usfirst.frc.team166.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team166.robot.commands.DriveStraightAuto;
 import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
+import org.usfirst.frc.team166.robot.commands.Shooter.RunShooter;
 import org.usfirst.frc.team166.robot.commands.Disable;
 import org.usfirst.frc.team166.robot.commands.Autonomous.BaseLineAutonomous;
 import org.usfirst.frc.team166.robot.subsystems.Climber;
@@ -18,6 +22,8 @@ import org.usfirst.frc.team166.robot.subsystems.Intake;
 import org.usfirst.frc.team166.robot.subsystems.Shooter;
 import org.usfirst.frc.team166.robot.subsystems.Storage;
 import org.usfirst.frc.team166.robot.subsystems.Vision;
+import org.usfirst.frc.team166.robot.subsystems.XboxLeftTrigger;
+import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
@@ -36,6 +42,9 @@ public class Robot extends IterativeRobot {
 	public static final Vision vision = new Vision();
 	public static OI oi;
 
+	private XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
+	private XboxRightTrigger xboxRightTrigger = new XboxRightTrigger();
+
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -50,11 +59,15 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Base Line Autonomous", new BaseLineAutonomous());
 		chooser.addObject("Do Nothing Autonomous", null);
 
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		double speed = Preferences.getInstance().getDouble(RobotMap.centerGearAutoSpeed, 0);
+		double distance = Preferences.getInstance().getDouble(RobotMap.centerGearAutoDistance, 0);
+		chooser.addObject("Base Line", new DriveStraightAuto(distance, speed));
+
+		chooser.addObject("None", null);
 
 		SmartDashboard.putData("Auto Mode", chooser);
-		// SmartDashboard.putData(drive);
-
+		xboxLeftTrigger.whenActive(new ToggleGearManip());
+		xboxRightTrigger.whenActive(new RunShooter());
 	}
 
 	/**

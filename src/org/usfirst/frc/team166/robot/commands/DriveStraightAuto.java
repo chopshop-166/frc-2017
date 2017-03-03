@@ -1,6 +1,5 @@
 package org.usfirst.frc.team166.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team166.robot.Robot;
@@ -8,24 +7,23 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class DriveTime extends Command {
-	double time; // seconds
-	double speed; // motor power (for now)
-	Timer timer;
+public class DriveStraightAuto extends Command {
+	double distance;
+	double speed;
 
-	public DriveTime(double desiredTime, double desiredSpeed) {
+	public DriveStraightAuto(double desiredDistance, double desiredSpeed) {
 		requires(Robot.drive);
-		time = desiredTime;
+
+		distance = desiredDistance;
 		speed = desiredSpeed;
+
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		Robot.drive.resetGyro();
-		timer = new Timer();
-		timer.reset();
-		timer.start();
+		Robot.drive.resetEncoders();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -37,21 +35,19 @@ public class DriveTime extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		// return Robot.drive.hasDrivenDistance(time);
-		return (timer.get() >= time);
+		return Robot.drive.hasDrivenDistance(distance);
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
 		Robot.drive.stopMotors();
-		timer.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.drive.stopMotors();
+		end();
 	}
 }
