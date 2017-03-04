@@ -22,6 +22,7 @@ import org.usfirst.frc.team166.robot.subsystems.Intake;
 import org.usfirst.frc.team166.robot.subsystems.Shooter;
 import org.usfirst.frc.team166.robot.subsystems.Storage;
 import org.usfirst.frc.team166.robot.subsystems.Vision;
+import org.usfirst.frc.team166.robot.subsystems.VisionProcessing;
 import org.usfirst.frc.team166.robot.subsystems.XboxLeftTrigger;
 import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
 
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static final Climber climber = new Climber();
 	public static final Elevator elevator = new Elevator();
 	public static final Vision vision = new Vision();
+	public static final VisionProcessing visionProcessing = new VisionProcessing();
 	public static OI oi;
 
 	private XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
@@ -68,6 +70,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto Mode", chooser);
 		xboxLeftTrigger.whenActive(new ToggleGearManip());
 		xboxRightTrigger.whenActive(new RunShooter());
+		Robot.visionProcessing.StartServer();
+		Robot.visionProcessing.runUsbCamera();
 	}
 
 	/**
