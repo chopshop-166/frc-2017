@@ -112,11 +112,14 @@ public class Drive extends Subsystem {
 		SmartDashboard.putNumber("Desired Angle: ", desiredAngle);
 		SmartDashboard.putNumber("Angle error: ", angleError);
 
-		if (angleError <= 180.0 || angleError <= -180.0)
-			turnAngleCW();
-		else
-			turnAngleCCW();
+		if (angleError <= 180.0 || angleError <= -180.0) {
+			angleError = Math.abs(angleError);
 
+			setMotorPower(-motorCompAngle(angleError), motorCompAngle(angleError));
+		} else {
+			angleError = Math.abs(angleError);
+			setMotorPower(-motorCompAngle(angleError), motorCompAngle(angleError));
+		}
 	}
 
 	public void turnAngleCCW() {
@@ -149,7 +152,7 @@ public class Drive extends Subsystem {
 	}
 
 	public double getMotorSpeed(Encoder enc) {
-		encoderRight.setDistancePerPulse((Math.PI * wheelDiameter) / 1024);
+		// encoderRight.setDistancePerPulse((Math.PI * wheelDiameter) / 1024);
 		encoderLeft.setDistancePerPulse((Math.PI * wheelDiameter) / 1024);
 		return enc.getRate();
 	}
