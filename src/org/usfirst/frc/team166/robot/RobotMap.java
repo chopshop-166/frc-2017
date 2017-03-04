@@ -58,10 +58,21 @@ public class RobotMap {
 	public static String centerGearAutoSpeed = "Center Gear Auto Speed";
 	public static String centerGearAutoDistance = "Center Gear Auto Distance";
 	public static String autoWaitTime = "Center Gear Auto Wait Time";
-	public static String autoWaitTime2 = "Center Gear Auto Wait Time 2 ";
+	public static String autoWaitTime2 = "Center Gear Auto Wait Time 2";
 	public static String centerGearAutoDistanceBackwards = "Center Gear Auto Distance Backwards";
 	public static String speedToDriveWithGyro = "Speed To Drive With Gyro";
 	public static String distanceToDriveWithGyro = "Distance To Drive With Gyro";
 	public static String driveGyroPower = "Drive Gyro Power";
 	// public static String elevatorMotorSpeed = "Elevator Motor Speed";
+	public static String waitForShooter = "Wait For Shooter";
+
+	// Base Line Auto command preferences
+	public static String baseLineDistance = "Base Line Distance";
+	public static String baseLineSpeed = "Base Line Speed";
+
+	// Boiler Side Red Auto command preferences
+	public static String driveToAngledPegDistance = "Drive To Angled Peg Distance";
+
+	// Camera Stuff
+	public static String camera = "Camera";
 }

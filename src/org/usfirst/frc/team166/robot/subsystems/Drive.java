@@ -83,7 +83,7 @@ public class Drive extends Subsystem {
 	}
 
 	public boolean hasDrivenDistance(double distInches) {
-		return getDistanceSinceLastReset() >= distInches;
+		return Math.abs(getDistanceSinceLastReset()) >= distInches;
 	}
 
 	public void stopMotors() {
@@ -159,7 +159,7 @@ public class Drive extends Subsystem {
 	}
 
 	public void resetEncoders() {
-		encoderRight.reset();
+		// encoderRight.reset();
 		encoderLeft.reset();
 	}
 

@@ -1,5 +1,7 @@
 package org.usfirst.frc.team166.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,7 +10,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team166.robot.commands.Disable;
 import org.usfirst.frc.team166.robot.commands.DriveStraightAuto;
+import org.usfirst.frc.team166.robot.commands.Autonomous.BaseLineAutonomous;
 import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Shooter.RunShooter;
@@ -40,6 +44,8 @@ public class Robot extends IterativeRobot {
 	public static final Vision vision = new Vision();
 	public static OI oi;
 
+	private UsbCamera cam0;
+
 	private XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
 	private XboxRightTrigger xboxRightTrigger = new XboxRightTrigger();
 
@@ -54,12 +60,15 @@ public class Robot extends IterativeRobot {
 		Robot.gearManipulator.close();
 		oi = new OI();
 		chooser.addDefault("Center Gear Auto", new CenterGearAutonomous());
+		chooser.addObject("Base Line Autonomous", new BaseLineAutonomous());
+		chooser.addObject("Do Nothing Autonomous", null);
 
 		double speed = Preferences.getInstance().getDouble(RobotMap.centerGearAutoSpeed, 0);
 		double distance = Preferences.getInstance().getDouble(RobotMap.centerGearAutoDistance, 0);
 		chooser.addObject("Base Line", new DriveStraightAuto(distance, speed));
-
 		chooser.addObject("None", null);
+
+		cam0 = CameraServer.getInstance().startAutomaticCapture();
 
 		SmartDashboard.putData("Auto Mode", chooser);
 		xboxLeftTrigger.whenActive(new ToggleGearManip());
@@ -72,7 +81,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		new Disable().start();
 	}
 
 	@Override
@@ -120,6 +129,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+
+		new Disable().start();
 	}
 
 	/**

@@ -13,6 +13,10 @@ public class Storage extends Subsystem {
 
 	Victor augerMotor = new Victor(RobotMap.augerMotor);
 
+	public Storage() {
+		augerMotor.setInverted(true);
+	}
+
 	@Override
 	public void initDefaultCommand() {
 	}
