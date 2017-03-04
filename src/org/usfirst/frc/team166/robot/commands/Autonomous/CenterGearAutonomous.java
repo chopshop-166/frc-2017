@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 import org.usfirst.frc.team166.robot.RobotMap;
-import org.usfirst.frc.team166.robot.commands.DriveDistance;
 import org.usfirst.frc.team166.robot.commands.DriveStraightAuto;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.OpenManipulator;
 
@@ -23,11 +22,7 @@ public class CenterGearAutonomous extends CommandGroup {
 		addSequential(new DriveStraightAuto(centerGearAutoDistance, centerGearAutoSpeed));
 		addSequential(new WaitCommand(autoWaitTime));
 		addSequential(new OpenManipulator());
-
-		double autoWaitTime2 = Preferences.getInstance().getDouble(RobotMap.autoWaitTime2, 0.0);
-		addSequential(new WaitCommand(autoWaitTime2));
-		double centerGearAutoDistanceBackwards = Preferences.getInstance()
-				.getDouble(RobotMap.centerGearAutoDistanceBackwards, 0.0);
-		addSequential(new DriveDistance(centerGearAutoDistanceBackwards, -0.25));
+		// addSequential(new WaitCommand(autoWaitTime));
+		addSequential(new DriveStraightAuto(centerGearAutoDistance / 2, -centerGearAutoSpeed));
 	}
 }
