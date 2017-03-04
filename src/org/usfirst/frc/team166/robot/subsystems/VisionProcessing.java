@@ -1,21 +1,24 @@
 package org.usfirst.frc.team166.robot.subsystems;
 
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class VisionProcessing extends Subsystem {
 
-	NetworkTable networktable;
+	CameraServer Camera;
 
-	// public double CenterPoint() {
-	// return networktable.getDouble();
-	// }
+	public void runUsbCamera() {
+		Camera.startAutomaticCapture();
+		SmartDashboard.putData("CameraFeed", (Sendable) Camera.startAutomaticCapture());
+	}
 
-	public void NetworkTable() {
-		networktable = NetworkTable.getTable("VisionDataTAble");
+	public void StartServer() {
+		Camera.addServer("CameraServer", 1);
 	}
 
 	@Override
