@@ -18,7 +18,7 @@ public class VisionProcessing extends Subsystem {
 	}
 
 	public void StartServer() {
-		Camera.addServer("CameraServer", 1);
+		Camera.addServer("cam0", 1);
 	}
 
 	@Override
