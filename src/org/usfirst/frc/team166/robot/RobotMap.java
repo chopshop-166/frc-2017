@@ -69,4 +69,7 @@ public class RobotMap {
 	// Base Line Auto command preferences
 	public static String baseLineDistance = "Base Line Distance";
 	public static String baseLineSpeed = "Base Line Speed";
+
+	// Boiler Side Red Auto command preferences
+	public static String driveToAngledPegDistance = "Drive To Angled Peg Distance";
 }
