@@ -12,6 +12,7 @@ import org.usfirst.frc.team166.robot.RobotMap;
 public class RunShooter extends Command {
 
 	public RunShooter() {
+		requires(Robot.shooter);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -27,18 +28,17 @@ public class RunShooter extends Command {
 
 	@Override
 	protected boolean isFinished() {
-
-		double waitForShooter = Preferences.getInstance().getDouble(RobotMap.waitForShooter, 5.0);
-		return Robot.shooter.hasRunFor(waitForShooter);
+		return false;
 
 	}
 
 	@Override
 	protected void end() {
-
+		Robot.shooter.stopShooter();
 	}
 
 	@Override
 	protected void interrupted() {
+		Robot.shooter.stopShooter();
 	}
 }

@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.commands.Disable;
-import org.usfirst.frc.team166.robot.commands.DriveStraightAuto;
 import org.usfirst.frc.team166.robot.commands.Autonomous.BaseLineAutonomous;
+import org.usfirst.frc.team166.robot.commands.Autonomous.BoilerSideBlueAuto;
+import org.usfirst.frc.team166.robot.commands.Autonomous.BoilerSideRedAuto;
 import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Shooter.RunShooter;
@@ -61,12 +62,12 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		chooser.addDefault("Center Gear Auto", new CenterGearAutonomous());
 		chooser.addObject("Base Line Autonomous", new BaseLineAutonomous());
+		chooser.addObject("Boiler side Blue auto", new BoilerSideBlueAuto());
+		chooser.addObject("Boiler side Red auto", new BoilerSideRedAuto());
 		chooser.addObject("Do Nothing Autonomous", null);
 
 		double speed = Preferences.getInstance().getDouble(RobotMap.centerGearAutoSpeed, 0);
 		double distance = Preferences.getInstance().getDouble(RobotMap.centerGearAutoDistance, 0);
-		chooser.addObject("Base Line", new DriveStraightAuto(distance, speed));
-		chooser.addObject("None", null);
 
 		cam0 = CameraServer.getInstance().startAutomaticCapture();
 

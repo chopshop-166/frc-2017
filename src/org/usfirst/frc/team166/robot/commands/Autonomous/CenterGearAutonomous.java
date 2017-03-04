@@ -24,5 +24,7 @@ public class CenterGearAutonomous extends CommandGroup {
 		addSequential(new OpenManipulator());
 		// addSequential(new WaitCommand(autoWaitTime));
 		addSequential(new DriveStraightAuto(centerGearAutoDistance / 2, -centerGearAutoSpeed));
+		addSequential(new WaitCommand(autoWaitTime / 2));
+		addSequential(new DriveStraightAuto(centerGearAutoDistance / 3, centerGearAutoSpeed));
 	}
 }

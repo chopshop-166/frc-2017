@@ -102,14 +102,12 @@ public class OI {
 		return -stickRight.getY();
 	}
 
-	public int getCopilotLeftTrigger() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getCopilotLeftTrigger() {
+		return xbox.getRawAxis(3);
 	}
 
-	public int getCopilotRightTrigger() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getCopilotRightTrigger() {
+		return xbox.getRawAxis(2);
 	}
 
 }
