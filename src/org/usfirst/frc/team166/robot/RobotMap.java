@@ -22,11 +22,12 @@ public class RobotMap {
 	// CAN[2] is left side and positive is forward
 	public static int rearLeftMotor = 2;
 
+	public static int manipulatorMotor = 2;
 	public static int augerMotor = 5;
 	public static int climberMotor = 0;
 	public static int intakeMotor = 3;
 	public static int shooterMotor = 1;
-	public static int elevatorMotor = 2;
+	// public static int elevatorMotor = 2;
 	// Analog Sensors
 	public static int gyroPort = 0;
 
@@ -50,6 +51,9 @@ public class RobotMap {
 	public static String elevatorMotorSpeed = "Elevator Motor Speed";
 	public static String shooterMotorSpeed = "Shooter Speed";
 
+	// Preferences for dropping gear
+	public static String reverseFromPegDistance = "Reverse From Peg Distance";
+	public static String reverseFromPegSpeed = "Reverse From Peg Speed";
 	// Preferences for testing distance commands
 	public static String desiredDistance = "Desired Distance";
 	public static String desiredSpeed = "Desired Speed";
@@ -66,6 +70,7 @@ public class RobotMap {
 	public static String LeftGearAutoDist = "LeftGearAutoDist";
 	// public static String elevatorMotorSpeed = "Elevator Motor Speed";
 	public static String waitForShooter = "Wait For Shooter";
+	public static String wiggleForward = "wiggle forward";
 
 	// Base Line Auto command preferences
 	public static String baseLineDistance = "Base Line Distance";

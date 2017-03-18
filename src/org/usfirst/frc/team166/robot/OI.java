@@ -12,8 +12,9 @@ import org.usfirst.frc.team166.robot.commands.DriveStraightJoysticks;
 import org.usfirst.frc.team166.robot.commands.ElevatorOff;
 import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
-import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.DropManipulatorReverseMotor;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.UpManipulator;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
 import org.usfirst.frc.team166.robot.commands.Shooter.ShooterCommandGroup;
 import org.usfirst.frc.team166.robot.commands.Shooter.ShooterOff;
@@ -34,7 +35,7 @@ public class OI {
 		double distance = Preferences.getInstance().getDouble(RobotMap.desiredDistance, 0.0);
 		SmartDashboard.putData(new DriveDistance(distance, speed));
 		SmartDashboard.putData(new CenterGearAutonomous());
-		SmartDashboard.putData(new CloseManipulator());
+		SmartDashboard.putData(new UpManipulator());
 		SmartDashboard.putData(new DriveStraightAuto(distance, speed));
 
 		JoystickButton leftJoyTrigger = new JoystickButton(stickLeft, 1);
@@ -84,9 +85,7 @@ public class OI {
 		buttonB.whenReleased(new AugerOff());
 		buttonB.whenReleased(new ShooterOff());
 		buttonB.whenReleased(new ElevatorOff());
-
-		// xboxLeftTrigger.whenActive(new ToggleGearManip());
-		// xboxRightTrigger.whenActive(new RunShooter());
+		rightButton.whenPressed(new DropManipulatorReverseMotor());
 
 		// Double joystick commands
 

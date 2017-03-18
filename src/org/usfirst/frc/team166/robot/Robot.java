@@ -15,7 +15,6 @@ import org.usfirst.frc.team166.robot.commands.Autonomous.BaseLineAutonomous;
 import org.usfirst.frc.team166.robot.commands.Autonomous.BoilerSideBlueAuto;
 import org.usfirst.frc.team166.robot.commands.Autonomous.BoilerSideRedAuto;
 import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
-import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Shooter.RunShooter;
 import org.usfirst.frc.team166.robot.subsystems.Climber;
 import org.usfirst.frc.team166.robot.subsystems.Drive;
@@ -58,7 +57,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		Robot.gearManipulator.close();
+		Robot.gearManipulator.gearManipulatorUp();
 		oi = new OI();
 		chooser.addDefault("Center Gear Auto", new CenterGearAutonomous());
 		chooser.addObject("Base Line Autonomous", new BaseLineAutonomous());
@@ -72,8 +71,8 @@ public class Robot extends IterativeRobot {
 		cam0 = CameraServer.getInstance().startAutomaticCapture();
 
 		SmartDashboard.putData("Auto Mode", chooser);
-		xboxLeftTrigger.whenActive(new ToggleGearManip());
-		xboxRightTrigger.whenActive(new RunShooter());
+		// xboxLeftTrigger.whileActive(new ClimberTriggerOn());
+		xboxRightTrigger.whileActive(new RunShooter());
 	}
 
 	/**

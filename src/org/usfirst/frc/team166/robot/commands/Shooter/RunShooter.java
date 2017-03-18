@@ -28,7 +28,9 @@ public class RunShooter extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+
+		double waitForShooter = Preferences.getInstance().getDouble(RobotMap.waitForShooter, 5.0);
+		return Robot.shooter.hasRunFor(waitForShooter);
 
 	}
 
