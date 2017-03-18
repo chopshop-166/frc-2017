@@ -73,6 +73,4 @@ public class RobotMap {
 	// Boiler Side Red Auto command preferences
 	public static String driveToAngledPegDistance = "Drive To Angled Peg Distance";
 
-	// Camera Stuff
-	public static String camera = "Camera";
 }
