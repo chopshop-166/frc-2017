@@ -7,9 +7,9 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class CloseManipulator extends Command {
+public class UpManipulator extends Command {
 
-	public CloseManipulator() {
+	public UpManipulator() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.gearManipulator);
@@ -18,7 +18,7 @@ public class CloseManipulator extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.gearManipulator.close();
+		Robot.gearManipulator.gearManipulatorUp();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -24,7 +24,7 @@ public class Drive extends Subsystem {
 	Encoder encoderRight = new Encoder(RobotMap.rightEncoderA, RobotMap.rightEncoderB);
 	Encoder encoderLeft = new Encoder(RobotMap.leftEncoderA, RobotMap.leftEncoderB);
 
-	AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
+	public AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
 	private static final double wheelDiameter = 4;
 	private static final int pulsesPerRevolution = 360;
@@ -120,6 +120,14 @@ public class Drive extends Subsystem {
 			angleError = Math.abs(angleError);
 			setMotorPower(-motorCompAngle(angleError), motorCompAngle(angleError));
 		}
+	}
+
+	public void turnLeft(double power) {
+		setMotorPower(-power, power);
+	}
+
+	public void turnRight(double power) {
+		setMotorPower(power, -power);
 	}
 
 	public void turnAngleCCW() {
