@@ -6,12 +6,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team166.robot.commands.DriveDistance;
-import org.usfirst.frc.team166.robot.commands.DriveStraightAuto;
-import org.usfirst.frc.team166.robot.commands.DriveStraightJoysticks;
 import org.usfirst.frc.team166.robot.commands.ElevatorOff;
 import org.usfirst.frc.team166.robot.commands.Autonomous.CenterGearAutonomous;
 import org.usfirst.frc.team166.robot.commands.Climber.ClimberOn;
+import org.usfirst.frc.team166.robot.commands.Drive.DriveDistance;
+import org.usfirst.frc.team166.robot.commands.Drive.DriveHalfSpeed;
+import org.usfirst.frc.team166.robot.commands.Drive.DriveStraightAuto;
+import org.usfirst.frc.team166.robot.commands.Drive.DriveStraightJoysticks;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.CloseManipulator;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.ToggleGearManip;
 import org.usfirst.frc.team166.robot.commands.Intake.RunIntake;
@@ -70,10 +71,8 @@ public class OI {
 
 		JoystickButton leftButton = new JoystickButton(xbox, 5);
 		JoystickButton rightButton = new JoystickButton(xbox, 6);
-
 		JoystickButton back = new JoystickButton(xbox, 7);
 		JoystickButton start = new JoystickButton(xbox, 8);
-
 		JoystickButton leftJoyXboxButton = new JoystickButton(xbox, 9);
 		JoystickButton rightJoyXboxButton = new JoystickButton(xbox, 10);
 		// Xbox commands
@@ -88,10 +87,11 @@ public class OI {
 		// xboxLeftTrigger.whenActive(new ToggleGearManip());
 		// xboxRightTrigger.whenActive(new RunShooter());
 
-		// Double joystick commands
+		// Joystick commands
 
 		rightJoyTrigger.whileHeld(new RunIntake());
 		leftJoyTrigger.whileHeld(new DriveStraightJoysticks());
+		button2Left.toggleWhenActive(new DriveHalfSpeed());
 	}
 
 	public double getLeftY() {

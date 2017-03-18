@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team166.robot.Robot;
 import org.usfirst.frc.team166.robot.RobotMap;
-import org.usfirst.frc.team166.robot.commands.DriveWithJoysticks;
+import org.usfirst.frc.team166.robot.commands.Drive.DriveWithJoysticks;
 
 /**
  * TEMPORARALY REMOVED CAN FROM CANTALON TO MAKE SOFTWARE MERGEABLE
@@ -99,6 +99,18 @@ public class Drive extends Subsystem {
 
 		setMotorPower(RightPower, LeftPower);
 		// }
+	}
+
+	public void driveHalfSpeed(double rightJoyVal, double leftJoyVal) {
+
+		double rightPower = rightJoyVal;
+		double leftPower = leftJoyVal;
+
+		motorFrontRight.set(rightPower);
+		motorRearRight.set(rightPower);
+		motorFrontLeft.set(leftPower);
+		motorRearLeft.set(leftPower);
+
 	}
 
 	public double motorCompDriveStraightGyro(double angleError) {

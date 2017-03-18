@@ -1,4 +1,4 @@
-package org.usfirst.frc.team166.robot.commands;
+package org.usfirst.frc.team166.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -7,23 +7,22 @@ import org.usfirst.frc.team166.robot.Robot;
 /**
  *
  */
-public class DriveStraightAuto extends Command {
-	double distance;
-	double speed;
+public class DriveDistance extends Command {
+	double distance; // inches
+	double speed; // motor power (for now)
 
-	public DriveStraightAuto(double desiredDistance, double desiredSpeed) {
+	public DriveDistance(double desiredDistance, double desiredSpeed) {
 		requires(Robot.drive);
-
-		distance = desiredDistance;
+		distance = Math.abs(desiredDistance);
 		speed = desiredSpeed;
-
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.drive.resetGyro();
+		// Robot.drive.resetGyro();
 		Robot.drive.resetEncoders();
+		// Robot.drive.setMotorPower(speed, speed);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

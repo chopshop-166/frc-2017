@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc.team166.robot.RobotMap;
-import org.usfirst.frc.team166.robot.commands.DriveStraightAuto;
-import org.usfirst.frc.team166.robot.commands.TurnAngle;
+import org.usfirst.frc.team166.robot.commands.Drive.DriveStraightAuto;
+import org.usfirst.frc.team166.robot.commands.Drive.TurnAngle;
 
 /**
  *
