@@ -63,6 +63,7 @@ public class RobotMap {
 	public static String speedToDriveWithGyro = "Speed To Drive With Gyro";
 	public static String distanceToDriveWithGyro = "Distance To Drive With Gyro";
 	public static String driveGyroPower = "Drive Gyro Power";
+	public static String LeftGearAutoDist = "LeftGearAutoDist";
 	// public static String elevatorMotorSpeed = "Elevator Motor Speed";
 	public static String waitForShooter = "Wait For Shooter";
 
