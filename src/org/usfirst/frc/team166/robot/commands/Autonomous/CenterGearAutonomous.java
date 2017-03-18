@@ -7,8 +7,10 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.usfirst.frc.team166.robot.RobotMap;
 import org.usfirst.frc.team166.robot.commands.DriveStraightAuto;
 import org.usfirst.frc.team166.robot.commands.TurnAngle;
-import org.usfirst.frc.team166.robot.commands.GearManipulator.UpManipulator;
 import org.usfirst.frc.team166.robot.commands.GearManipulator.DownManipulator;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.ManipulatorMotorOff;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.ReverseManipulatorMotors;
+import org.usfirst.frc.team166.robot.commands.GearManipulator.UpManipulator;
 
 /**
  *
@@ -28,11 +30,13 @@ public class CenterGearAutonomous extends CommandGroup {
 		addSequential(new TurnAngle(3));
 		addSequential(new DriveStraightAuto(wiggleForward, centerGearAutoSpeed));
 		addSequential(new WaitCommand(autoWaitTime));
-		addSequential(new DownManipulator());
+		addParallel(new DownManipulator());
+		addParallel(new ReverseManipulatorMotors());
 		// addSequential(new WaitCommand(autoWaitTime));
 		addSequential(new DriveStraightAuto(centerGearAutoDistance / 2, -centerGearAutoSpeed));
 		addSequential(new WaitCommand(autoWaitTime / 2));
 		addSequential(new DriveStraightAuto(centerGearAutoDistance / 3, centerGearAutoSpeed));
+		addSequential(new ManipulatorMotorOff());
 		addSequential(new UpManipulator());
 	}
 }
