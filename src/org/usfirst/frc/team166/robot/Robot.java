@@ -33,15 +33,15 @@ import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
  */
 public class Robot extends IterativeRobot {
 
-	public static final Drive drive = new Drive();
-	public static final GearManipulator gearManipulator = new GearManipulator();
-	public static final Intake intake = new Intake();
-	public static final Shooter shooter = new Shooter();
-	public static final Storage storage = new Storage();
-	public static final Climber climber = new Climber();
-	public static final Elevator elevator = new Elevator();
-	public static final Vision vision = new Vision();
-	public static final VisionProcessing visionProcessing = new VisionProcessing();
+	public static Drive drive;
+	public static GearManipulator gearManipulator;
+	public static Intake intake;
+	public static Shooter shooter;
+	public static Storage storage;
+	public static Climber climber;
+	public static Elevator elevator;
+	public static Vision vision;
+	public static VisionProcessing visionProcessing;
 	public static OI oi;
 
 	private XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
@@ -55,8 +55,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		Robot.gearManipulator.gearManipulatorUp();
+		drive = new Drive();
+		gearManipulator = new GearManipulator();
+		intake = new Intake();
+		shooter = new Shooter();
+		storage = new Storage();
+		climber = new Climber();
+		elevator = new Elevator();
+		vision = new Vision();
+		visionProcessing = new VisionProcessing();
 		oi = new OI();
+		Robot.gearManipulator.gearManipulatorUp();
 		chooser.addDefault("Center Gear Auto", new CenterGearAutonomous());
 		chooser.addObject("Base Line Autonomous", new BaseLineAutonomous());
 		chooser.addObject("Boiler side Blue auto", new BoilerSideBlueAuto());

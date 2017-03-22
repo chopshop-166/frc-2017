@@ -30,7 +30,7 @@ public class RobotMap {
 	// public static int elevatorMotor = 2;
 	// Analog Sensors
 	public static int gyroPort = 0;
-
+	public static int irSensor = 1;
 	// Digital Sensors
 
 	// Encoders
