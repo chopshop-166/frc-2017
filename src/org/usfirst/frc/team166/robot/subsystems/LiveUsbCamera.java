@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class VisionProcessing extends Subsystem {
+public class LiveUsbCamera extends Subsystem {
 
 	UsbCamera cam0;
 
 	public void runUsbCamera() {
+		cam0.setResolution(1280, 720);
 		cam0 = CameraServer.getInstance().startAutomaticCapture();
+		
 	}
 
 	public void StartServer() {
