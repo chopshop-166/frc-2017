@@ -19,10 +19,10 @@ import org.usfirst.frc.team166.robot.subsystems.Drive;
 import org.usfirst.frc.team166.robot.subsystems.Elevator;
 import org.usfirst.frc.team166.robot.subsystems.GearManipulator;
 import org.usfirst.frc.team166.robot.subsystems.Intake;
+import org.usfirst.frc.team166.robot.subsystems.LiveUsbCamera;
 import org.usfirst.frc.team166.robot.subsystems.Shooter;
 import org.usfirst.frc.team166.robot.subsystems.Storage;
 import org.usfirst.frc.team166.robot.subsystems.Vision;
-import org.usfirst.frc.team166.robot.subsystems.LiveUsbCamera;
 import org.usfirst.frc.team166.robot.subsystems.XboxLeftTrigger;
 import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
 
@@ -33,15 +33,15 @@ import org.usfirst.frc.team166.robot.subsystems.XboxRightTrigger;
  */
 public class Robot extends IterativeRobot {
 
-	public static final Drive drive = new Drive();
-	public static final GearManipulator gearManipulator = new GearManipulator();
-	public static final Intake intake = new Intake();
-	public static final Shooter shooter = new Shooter();
-	public static final Storage storage = new Storage();
-	public static final Climber climber = new Climber();
-	public static final Elevator elevator = new Elevator();
-	public static final Vision vision = new Vision();
-	public static final LiveUsbCamera visionProcessing = new LiveUsbCamera();
+	public static Drive drive;
+	public static GearManipulator gearManipulator;
+	public static Intake intake;
+	public static Shooter shooter;
+	public static Storage storage;
+	public static Climber climber;
+	public static Elevator elevator;
+	public static Vision vision;
+	public static LiveUsbCamera visionProcessing;
 	public static OI oi;
 
 	private XboxLeftTrigger xboxLeftTrigger = new XboxLeftTrigger();
@@ -55,8 +55,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		Robot.gearManipulator.gearManipulatorUp();
+		drive = new Drive();
+		gearManipulator = new GearManipulator();
+		intake = new Intake();
+		shooter = new Shooter();
+		storage = new Storage();
+		climber = new Climber();
+		elevator = new Elevator();
+		vision = new Vision();
+		visionProcessing = new LiveUsbCamera();
 		oi = new OI();
+		Robot.gearManipulator.gearManipulatorUp();
 		chooser.addDefault("Center Gear Auto", new CenterGearAutonomous());
 		chooser.addObject("Base Line Autonomous", new BaseLineAutonomous());
 		chooser.addObject("Boiler side Blue auto", new BoilerSideBlueAuto());
