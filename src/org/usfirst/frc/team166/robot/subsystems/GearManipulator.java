@@ -16,7 +16,7 @@ public class GearManipulator extends Subsystem {
 
 	DoubleSolenoid manipulatorSolenoid = new DoubleSolenoid(RobotMap.forwardSolenoid, RobotMap.reverseSolenoid);
 	Victor manipulatorMotor = new Victor(RobotMap.manipulatorMotor);
-	AnalogInput IrSensor = new AnalogInput(RobotMap.irSensor);
+	public AnalogInput IrSensor = new AnalogInput(RobotMap.irSensor);
 
 	@Override
 	public void initDefaultCommand() {
@@ -50,10 +50,8 @@ public class GearManipulator extends Subsystem {
 
 	public void toggleManipulator() {
 		Value solenoidVal = manipulatorSolenoid.get();
-		Double IRValue = IrSensor.getVoltage();
 		if (solenoidVal == Value.kForward) {
 			manipulatorSolenoid.set(DoubleSolenoid.Value.kReverse);
-			manipulatorMotor.set(0.0);
 		} else {
 			manipulatorSolenoid.set(DoubleSolenoid.Value.kForward);
 			manipulatorMotor.set(0.5);
@@ -61,4 +59,10 @@ public class GearManipulator extends Subsystem {
 
 	}
 
+	public void irSensorRaise() {
+		if (IrSensor.getVoltage() <= 2) {
+			manipulatorSolenoid.set(DoubleSolenoid.Value.kReverse);
+			manipulatorMotor.set(0.0);
+		}
+	}
 }

@@ -17,6 +17,7 @@ public class ToggleGearManip extends Command {
 	@Override
 	protected void initialize() {
 		Robot.gearManipulator.toggleManipulator();
+		Robot.gearManipulator.irSensorRaise();
 	}
 
 	@Override
